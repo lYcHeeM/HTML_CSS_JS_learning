@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>1_JS热身</title>
+</head>
+
+<style>
+	li {
+		list-style: none;
+	}
+	ul ul {
+		padding: 0;
+		margin: 0;
+	}
+	.list {
+		position: relative;
+		width: 150px;
+	}
+	.list a {
+		border: 1px solid #000;
+		background: #C9C5C9;
+		display: inline-block;
+		width: 80px;
+		height: 30px;
+		text-decoration: none;
+		text-align: center;
+		line-height: 30px;
+		color: #000;
+	}
+	.list ul {
+		border: 1px solid #000;
+		width: 150px;
+		position: absolute;
+		left: 0;
+/*		.list盒子的高度是32px, 但为了让边框重叠, 这里少一个像素. */
+		top: 31px;
+		color: #746E6E;
+		background: #DBDFBA;
+		display: none;
+	}
+/*	
+	让一个元素隐藏的方法: 
+	1. display: none; 不显示, 也不占文档流;
+	2. visibility: hidden; 隐藏, 但占用文档流, 即可获取到盒子的宽高;
+	3. width/height;
+	4. 用一个盒子盖住;
+	5. opacity = 0;
+	6. position;
+	7. margin;
+	8.
+	……
+*/
+</style>
+
+<body>
+	<ul>
+		<li id="list" class="list">
+			<a id="link" href="#">微博</a>
+			<ul id="ul1">
+				<li>热门1</li>
+				<li>热门2</li>
+				<li>热门3</li>
+			</ul>
+		</li>
+	</ul>
+</body>
+
+<script>
+	var list = document.getElementById('list')
+	var ul1  = document.getElementById('ul1')
+	var link = document.getElementById('link')
+	list.onmouseover = function () {
+		ul1.style.display = 'block';
+		link.style.background = 'yellow';
+	};
+	list.onmouseout = function () {
+		ul1.style.display = 'none';
+		link.style.background = '#C9C5C9';
+	};
+	
+	/*
+		事件: 鼠标事件, 键盘事件, 系统事件(比如窗口size的变化), 表单事件(比如text中的文字变化), 自定义事件(比如组合基础的鼠标事件实现一个连点4下鼠标的事件)……
+		onload: 某个元素加载完html文件后执行
+		
+		
+		函数: function abc() {
+		}
+		可以理解为一段不会立即执行的命令序列
+			1. 直接调用: abc();
+			2. 事件调用: oDiv.onclick = abc;
+		匿名函数: function () {}, 元素.事件 = function () {};
+		
+		
+		调试: alert(1), alert('数字除外的字符序列'). 相当于printf()
+		
+		
+		变量: var a = ...;
+			var name = 'Leo';
+			var number = 123;
+	*/
+		
+</script>
+
+</html>

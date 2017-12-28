@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>8_定位需要注意的问题</title>
+</head>
+
+<style>
+/* 1.相对定位	*/
+	.box1 {
+		width: 500px;
+		height: 200px;
+		background: red;
+	}
+	.box2 {
+		width: 200px;
+		height: 500px;
+		background: blue;
+	}
+	/* 默认情况下, 在一般的浏览器中, 子元素超出的部分也会显示出来, 但在ie6下, 父元素的宽高一定会大于等于子元素	*/
+	
+	.box1, .box2 {
+		overflow: hidden;
+	}
+	/* 隐藏超出父级边界的部分 */
+	
+	.box2 {
+		position: relative;
+	}
+	/* 给子元素加了相对定位后, 在ie6下, overflow:hidden, 会失效, 解决办法是给父级也加上相对定位, 毕竟相对定位几乎不会影响盒子本身	*/
+	.box1 {
+		position: relative;
+	}
+	
+/*	2.绝对定位 */
+	/* 2.1 脱离文档流	*/
+	.box3 {
+		border: red solid 5px;
+	}
+	.box4 {
+		width: 200px;
+		height: 200px;
+		background: #7c1;
+		position: absolute;
+	}
+	/* 默认情况下子元素可以撑开父元素的高度, 子元素绝对定位后, 和浮动一样脱离了文档流, 无法再撑开父元素高度 */
+	
+	/* 2.2 ie6下绝对定位元素的定位父级宽高为奇数时的bug, (当这个子元素靠右下角时). 所以尽量不要用奇数来设定宽高. */
+	.box5 {
+		width: 501px;
+		height: 501px;
+		border: black solid 1px;
+		position: relative;
+	}
+	.box6 {
+		width: 50px;
+		height: 50px;
+		background: #7c2;
+		position: absolute;
+		right: -1px;
+		bottom: -1px;
+	}
+</style>
+
+<body>
+<div class="box1">
+	<div class="box2">
+		
+	</div>
+</div>
+-----------------
+<br/>
+<div class="box3">
+	<div class="box4">
+		
+	</div>
+</div>
+-----------------
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="box5">
+	<div class="box6">
+		
+	</div>
+</div>
+
+</body>
+</html>

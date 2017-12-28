@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>2_块\内嵌标签的基本特性及转换</title>
+</head>
+
+<style>
+	/* 
+	默认样式可以用浏览器的审查元素功能查看, 不同的浏览器默认样式不同, 尤其是IE6.
+	所以清除默认样式的目的就是为了适配不同的浏览器, 使视图(盒模型)在每个浏览器上的表现一致.
+	默认样式重置: Css reset;
+	*/
+	/* 清除外边距, 重置文字大小 */
+	body,p,h1,h2,h3,h4,h5,h6,dl,dd {margin: 0; font-size: 12px; /** 工作中还经常会重置字体 font-family */}
+	/* 清除列表的样式和内外边距 */
+	ol,ul {list-style: none; margin: 0; padding: 0;}
+	/* 清除a标签文本修饰 */
+	a {text-decoration: none;}
+	/* ie6中的img标签某些情况下会有边框, 去掉.	*/
+	img {border: none;}
+/* 不要用通配符, 太粗粒, 影响性能. 而应该使用群组选择语法. */
+/*	*{margin: 0; padding: 0;}*/
+	
+	
+	/*	内联\内嵌\行内属性标签
+		1. 可多个同行显示;	
+		2. 内容撑开宽度;
+		3. 不支持宽高;
+		4. 不支持上下外边距\内边距. 在设置了背景颜色之后, 虽然垂直内边距可以看到, 但没有效果过, 不会撑开垂直相邻的元素;
+		5. 代码换行被解析(代码换行表现在页面上是标签之间有间距);
+	*/
+	
+	/*  块属性标签
+		1. 默认独占一行;
+		2. 默认宽度充满body;
+	*/
+	div {height: 50px; background: orange;}
+	span, div {width: 50px; height: 50px; background: pink;}
+	span {margin: 100px;}
+	span {padding: 20px;}
+	/* 转为块	*/
+	span {display: block;}
+	/* 转为内嵌	*/
+	div {display: inline;}
+</style>
+
+<body>
+
+<!--标签可以在同在一行显示, 称为内联\内嵌\行内属性标签, 比如a\img\span\strong\em等-->
+<span>区分样式</span>
+<span>区分样式</span>
+<span>区分样式</span>
+<span>区分样式</span>
+
+<!--标签独占一行, 称为块-->
+<div>块</div>
+<div>块</div>
+
+
+
+</body>
+</html>

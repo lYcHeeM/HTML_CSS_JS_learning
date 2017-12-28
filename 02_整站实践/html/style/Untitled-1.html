@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+       <title>怎么去除a标签的默认间距</title>
+</head>
+
+    <style>
+        *{margin: 0;padding: 0;}
+        .demo{padding: 14px;text-align: center;}
+        .demo p{margin-bottom: 6px;}
+        .demo a{padding:3px 5px; text-decoration: none;color: #ffffff;}
+        .demo a:first-child{background-color: #2eacff;}
+        .demo a:last-child{background-color: orange;}
+    </style>
+<body>
+<p>默认情况</p>
+    <div class="demo">
+        <a href="#">底部链接1</a>
+        <a href="#">底部链接2</a>
+    </div>
+</body>
+</html>

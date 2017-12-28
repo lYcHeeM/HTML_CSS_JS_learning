@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>3_应用定位后元素之间的层级关系</title>
+</head>
+<style>
+	div {width: 100px; height: 100px;}
+	#box1 {background: red;}
+	#box2 {background: yellow;}
+	#box3 {background: blue;}
+	
+	#box1 {position: absolute;}
+	#box2 {width: 200px; height: 200px; position: relative}
+	#box1 {width: 300px;}
+	/* 
+		发现, 对box1和box2都应用定位后, box1跑到box2下面去了;
+		默认情况下, 定位元素之前的层级, 后者比前者高;
+	*/
+	
+	/*
+		控制定位元素之间的层级
+		z-index:[number], number较大者显示在上层;
+		下面重新使box1置于box2的上层
+	*/
+	#box1 {z-index: 1};
+</style>
+	
+<body>
+<div id="box1">div1</div>
+<div id="box2">div2</div>
+<div id="box3">div3</div>
+</body>
+</html>

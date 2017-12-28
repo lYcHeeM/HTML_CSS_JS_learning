@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>1_返回值return</title>
+</head>
+
+<body>
+<script>
+    // 返回值类型, 可以是任意的数据类型
+    // 默认返回值是undefined
+    function fn1() {
+
+    }
+    alert(fn1());
+
+    function fn2() {
+        return function (a) {
+            alert(a);
+        }
+    }
+    fn2()(1);
+</script>
+</body>
+</html>

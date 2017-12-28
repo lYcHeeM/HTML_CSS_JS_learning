@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>1_relative相对定位</title>
+</head>
+
+<style>
+	div {width: 100px; height: 100px;}
+	#box1 {background: red;}
+	#box2 {background: yellow;}
+	#box3 {background: pink;}
+	
+	/* 如果要把box2移动到box3的右邻边 	*/
+/*	#box2 {margin: 100px 0 0 100px;}*/
+/*	#box3 {margin-top: -100px;}*/
+	/* 但这种方法一来麻烦, 二来操作magin可能带来y麻烦 */
+	
+	/* 可用如下方法实现	*/
+	/* 
+		positive: relative 相对定位
+		特性:
+		1. 不使元素脱离文档流;
+		2. 不影响元素本身的特性;
+		3. 如果不配合定位偏移量使用, 对元素本身几乎没有影响.
+		
+		定位元素位置控制:
+		top/left/right/bottom(值都可正可负) 定位元素位置的偏移量
+	*/
+	#box2 {position: relative; left: 100px; top: 100px;}
+</style>
+
+<body>
+<div id="box1"></div>
+<div id="box2"></div>
+<div id="box3"></div>
+</body>
+</html>

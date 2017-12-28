@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>6_overflow</title>
+</head>
+
+<style>
+	p {width: 200px; height: 300px; font-size: 13px; border: 1px solid black; overflow: auto;}
+	h3 {margin: 0; background: pink;}
+	
+	/* 
+		在ie6下, 文字会把元素高度撑开, 即使元素本来的高度无法把文字显示完全;
+		而ie7下则不会撑开, 但后面的h3标签会覆盖多出来的文字, 而且是非透明覆盖;
+		其他浏览器和ie7类似, 只不过会透明性地覆盖;
+	
+		针对这种内容溢出问题问题, 可用overflow统一不同浏览器的表现;
+		overflow: auto scroll(总是显示滚动条) hidden(将隐藏溢出部分) visiable, 一般用auto
+		
+	*/
+	
+	/* overflow 还能包住浮动元素 , 因此也能应用在清除浮动中 */
+	.box1 {width: 220px; height: 100px; border: 1px solid black; overflow: auto;}
+	.box2 {width: 190px; height: 150px; background: yellow; float: left;}
+	
+</style>
+
+<body>
+<p>
+haslayout 是Windows Internet Explorer渲染引擎的一个内部组成部分。在InternetExplorer中，一个元素要么自己对自身的内容进行计算大小和组织，要么依赖于父元素来计算尺寸和组织内容。为了调节这两个不同的概念，渲染引擎采用了 hasLayout 的属性，属性值可以为true或false。当一个元素的 hasLayout属性值为true时，我们说这个元素有一个布局（layout）
+要想更好的理解 css， 尤其是 IE 下对 css 的渲染，haslayout 是一个非常有必要彻底弄清楚的概念。大多IE下的显示错误，就是源于 haslayout。如果它设置成了true，它就不得不去渲染它自己，因此元素不得不扩展去包含它的流出的内容。例如浮动或者很长很长的没有截断的单词，如果haslayout没有被设置成true，那么元素得依靠某个祖先元素来渲染它。这就是很多的ie bugs诞生的地方。
+</p>
+
+<h3>覆盖覆盖覆盖</h3>
+
+<br/>
+<div class="box1">
+	<div class="box2"></div>
+</div>
+
+</body>
+</html>

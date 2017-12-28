@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>1_浮动综合练习_1</title>
+</head>
+
+<style>
+	/* 清除默认样式并设置全局样式 */
+	body,dl,ul,dd {margin: 0; padding: 0; font-family: "宋体";}
+	li {list-style: none;}
+	a {color: #546b7a; text-decoration: none; font-size: 12px; font-family: "宋体";}
+	img {vertical-align: top; border: none;}
+	.strong {font-weight: bold;}
+	
+	/* 清浮动	*/
+	.clearFloat {zoom: 1;}
+	.clearFloat:after {content: ""; display: block; clear: both;}
+	
+	.wrap {
+		width: 465px; padding: 20px 25px 20px 24px;
+		background: url(img/1_bg1.png) no-repeat 234px 8px;
+		margin: 50px auto;
+	}
+	.left {width: 208px; float: left; }
+	.left .img {
+		background: url(img/1_imgRightShadow.png) no-repeat right 0;
+		padding-right: 5px; float: left;
+	}
+	.left .img a {
+		display: block;
+		border: 1px solid #c9d4dd;
+		padding: 3px;
+	}
+	.left dl {float: left; width: 66px; font-size: 12px;/* 虽然前面设置了a标签的fontsize, 实际测试发现如果此处不设置fontsize, 效果设置fontsize有差别, 下面的ul同理. 所以最好是在开头处统一设置. */ padding-left: 5px;line-height: 20px;}
+	.left dl dt a {color: #0c2f58;}
+	.left ul {width: 212px; padding-top: 10px; float: left; font-size: 12px;}
+	.left ul li {background: url(img/1_liBg.png) no-repeat left; line-height: 20px; padding: 0 0 0 10px;}
+	
+	.right {width: 230px;/*适配 ie6\7, 发现ie6\7无法撑开宽高, 这个宽度是在chrome上量出来的 */ padding-left: 14px; float: left;}
+	.right li {float: left; padding-left: 10px; vertical-align: top;}
+	.right .strong {text-align: center; display: block; padding-top: 8px;}
+	.right .img {border: 1px solid #c9d4dd; padding: 3px; display: block; }
+</style>
+
+<body>
+<div class="wrap clearFloat">
+	<div class="left clearFloat">
+			<div class="img">
+				<a href="#">
+					<img src="img/1_pic1.png" alt=""/>
+				</a>
+			</div>
+			<dl class="dl">
+				<dt>
+					<a href="#">潜伏</a>
+				</dt>
+				<dd>
+					<a href="#">导演: 姜伟</a>
+				</dd>
+				<dd>
+					<a href="#">主演: 姚晨 孙红雷</a>
+				</dd>
+			</dl>
+		<ul class="ul">
+			<li>
+				<a href="#">海清张嘉译演绎房奴生活《蜗居》</a>
+			</li>
+			<li>
+				<a href="#">琼瑶经典言情剧集锦</a>
+				<a href="#">梦露电影知多少</a>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="right">
+		<ul class="ul clearFloat">
+			<li>
+				<a class="img" href="#">
+					<img src="img/1_pic2.png"/>
+				</a>
+				<a class="strong" href="#">将爱情进行到底</a>
+			</li>
+			<li>
+				<a class="img" href="#">
+					<img src="img/1_pic2.png"/>
+				</a>
+				<a class="strong" href="#">将爱情进行到底</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+</body>
+</html>

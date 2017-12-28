@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>1_表格table的基本特性</title>
+</head>
+
+<style>
+	/* 清除表格的默认样式	*/
+	th, td {
+		padding: 0;
+	}
+	/* 加边框的方法	 */
+	th, td {
+		border: 1px solid black;
+		/*	如果table的宽度也设置了之后, 此宽度最终会被转化为百分比, table的总宽度 * %x */
+		width: 200px;
+		height: 50px;
+	}
+	table {	/* 默认, 边框会有间距, 如下消除		*/
+		border-collapse: collapse;
+	}
+	table {
+		width: 500px;
+	}
+	/* 
+	colspan: 合并列
+	rowspan: 合并行
+	两个命令都只能再html行间写
+	*/
+</style>
+
+<body>
+<table>
+	<thead> <!-- 表格标题, 一般不显示地写 -->
+	</thead>
+	<tbody> <!-- 表格体, 一般不显示地写 -->
+		<!-- 第一行 start -->
+		<th>列标题</th>
+		<th>列标题</th>
+		<th>列标题</th>
+		<th>列标题</th>
+		<th>列标题</th>
+		<!-- 第一行 end -->
+		
+		<tr> <!-- 行 -->
+			<td colspan = "2">单元格内容</td>
+<!--		合并一列之后要去掉相邻列, 否则会多出一列	 -->
+<!--			<td>单元格内容</td>-->
+			<td>单元格内容</td>
+			<td>单元格内容</td>
+			<td>单元格内容</td>
+		</tr>
+		
+		<tr> <!-- 行 -->
+			<td>单元格内容</td>
+			<td>单元格内容</td>
+			<td>单元格内容</td>
+			<td colspan="2" rowspan="3">单元格内容</td>
+<!--			<td>单元格内容</td>-->
+		</tr>
+		
+		<tr> <!-- 行 -->
+			<td rowspan="2">单元格内容</td>
+			<td>单元格内容</td>
+			<td>单元格内容</td>
+<!--			<td>单元格内容</td>-->
+<!--			<td>单元格内容</td>-->
+		</tr>
+		
+		<tr> <!-- 行 -->
+<!--			<td>单元格内容</td>-->
+			<td>单元格内容</td>
+			<td>单元格内容</td>
+<!--			<td>单元格内容</td>-->
+<!--			<td>单元格内容</td>-->
+		</tr>
+	</tbody>
+</table>
+
+</body>
+</html>

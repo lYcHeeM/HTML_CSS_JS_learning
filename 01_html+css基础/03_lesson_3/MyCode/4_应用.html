@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>2_块\内嵌标签的基本特性及转换</title>
+</head>
+
+<style>
+	/* 
+	默认样式可以用浏览器的审查元素功能查看, 不同的浏览器默认样式不同, 尤其是IE6.
+	所以清除默认样式的目的就是为了适配不同的浏览器, 使视图(盒模型)在每个浏览器上的表现一致.
+	默认样式重置: Css reset;
+	*/
+	/* 清除外边距, 重置文字大小 */
+	body,p,h1,h2,h3,h4,h5,h6,dl,dd {margin: 0; font-size: 12px; /** 工作中还经常会重置字体 font-family */}
+	/* 清除列表的样式和内外边距 */
+	ol,ul {list-style: none; margin: 0; padding: 0;}
+	/* 清除a标签文本修饰 */
+	a {text-decoration: none;}
+	/* ie6中的img标签某些情况下会有边框, 去掉.	*/
+	img {border: none;}
+/* 不要用通配符, 太粗粒, 影响性能. 而应该使用群组选择语法. */
+/*	*{margin: 0; padding: 0;}*/
+	
+	.pageIndexes {width: 600px; height: 60px; margin: 90px auto; background: #e8e8e8; text-align: center;}
+	.pageIndexes a {background: white; display: inline-block; border: 1px solid #cdcdcd; padding: 0 8px 0 9px; height: 28px; line-height: 28px; color: #333333}
+	.pageIndexes a:hover {color: red; border: 1px solid red;}
+	.pageIndexes .active {background: #fcf9ea; font-weight: bold; cursor: text;}
+	.pageIndexes .active:hover {color: #333333; border-color: #cdcdcd;}
+	
+/*	自定义鼠标光标样式, 用.cur格式兼容性最好(虽然png\jpg\gif也行. "pointer"也是一种兼容考虑, 如果图片样式无法应用, 则用pointer */
+	body {height: 1500px; cursor: url(hand.cur),pointer;} 
+</style>
+
+<body>
+	<div class="pageIndexes">
+	<a href="#">上一页</a>
+	<a href="#">1</a>
+	<a href="#">2</a>
+	<a href="#" class="active">3</a>
+	<a href="#">4</a>
+	<a href="#">...</a>
+	<a href="#">300</a>
+	<a href="#">301</a>
+	<a href="#">302</a>
+	<a href="#">下一页</a>
+	</div>
+</body>
+</html>

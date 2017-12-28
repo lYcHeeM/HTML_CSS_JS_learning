@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>4_JS热身_练习</title>
+</head>
+
+<script>
+	window.onload = function (){
+		var oTargetDiv = document.getElementsByClassName('target')[0];
+		var oConfigBtn = document.getElementById('config_btn');
+		var oCover = document.getElementsByClassName('cover')[0];
+		var oAdjustBoard = document.getElementsByClassName('adjust_board')[0];
+		var oResume = document.getElementsByClassName('resume')[0];
+		var oConfirm = document.getElementsByClassName('confirm')[0];
+		
+		var oRed = document.getElementsByClassName('red')[0];
+		var oYellow = document.getElementsByClassName('yellow')[0];
+		var oBlue = document.getElementsByClassName('blue')[0];
+		
+		var oWdithSetting200 = document.getElementsByClassName('width_setting')[0];
+		var oWdithSetting300 = document.getElementsByClassName('width_setting')[1];
+		var oWdithSetting400 = document.getElementsByClassName('width_setting')[2];
+		var oHeightSetting200 = document.getElementsByClassName('height_setting')[0];
+		var oHeightSetting300 = document.getElementsByClassName('height_setting')[1];
+		var oHeightSetting400 = document.getElementsByClassName('height_setting')[2];
+		
+		oConfigBtn.onclick = function () {
+			oCover.style.display = 'block';
+			oAdjustBoard.style.display = 'block';
+		};
+		oResume.onclick = function () {
+			oTargetDiv.style.width = '400px';
+			oTargetDiv.style.height = '300px';
+			oTargetDiv.style.background = 'yellow';
+		};
+		oConfirm.onclick = function () {
+			oCover.style.display = 'none';
+			oAdjustBoard.style.display = 'none';
+		};
+		
+		oRed.onclick = function() {
+			oTargetDiv.style.background = 'red';	
+		};
+		oYellow.onclick = function() {
+			oTargetDiv.style.background = 'yellow';	
+		};
+		oBlue.onclick = function() {
+			oTargetDiv.style.background = '#2990E1';	
+		};
+		
+		oWdithSetting200.onclick = function () {
+			oTargetDiv.style.width = '200px';	
+		};
+		oWdithSetting300.onclick = function () {
+			oTargetDiv.style.width = '300px';	
+		};
+		oWdithSetting400.onclick = function () {
+			oTargetDiv.style.width = '400px';	
+		};
+		
+		oHeightSetting200.onclick = function () {
+			oTargetDiv.style.height = '200px';	
+		};
+		oHeightSetting300.onclick = function () {
+			oTargetDiv.style.height = '300px';	
+		};
+		oHeightSetting400.onclick = function () {
+			oTargetDiv.style.height = '400px';	
+		};
+	};
+</script>
+
+<style>
+	/* body、html默认没有高度，此处为了令cover再ie6下也能充满浏览器窗口，需设置body、html的高度等于文档的高度	*/
+	body, html {
+		height: 100%;
+	}
+	ul {
+		padding: 0;
+		margin: 0;
+	}
+	li {
+		list-style: none;
+	}
+	h2 {
+		line-height: 40px;
+		display: inline;
+	}
+	strong {
+		display: inline-block;
+		width: 100px;
+		height: 40px;
+		line-height: 40px;
+		color: #fff;
+		text-align: center;
+		background: red;
+		cursor: pointer;
+	}
+	.target {
+		margin-top: 10px;
+		width: 400px;
+		height: 300px;
+		border: 5px solid #000;
+		background: yellow;
+	}
+	
+	.cover {
+		background: black;
+		opacity: 0.3;
+		/*	适配ie8及以下, 需用ie私有的滤镜属性	*/
+		filter:alpla(opacity=30);
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: none;
+	}
+	.adjust_board {
+		width: 400px;
+		/* position: absolute可以脱离文档流, 高度可由内容撑开 */
+/*		height: 400px;*/
+		border: 20px solid #E8D6D6;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin: -210px 0 0 -210px;
+		background: #EAE4E4;
+		display: none;
+	}
+	/* 网上学到的让宽度不确定的浮动元素居中的方法:
+		1.用一个父级包起来;
+		2.父级和自己都用相对定位;
+		3.父级左移50%, 自己右移50%;
+	*/
+	.wrap {
+		/*  此处浮动是因为子元素ul浮动了, 为了包住ul	*/
+		float: left;
+		position: relative;
+		left: 50%;
+	}
+	.adjust_board ul {
+		float: left;
+		position: relative;
+		right: 50%;
+		margin: 30px 0;
+	}
+	.adjust_board li {
+		padding: 5px 0;
+	}
+	.adjust_board li a {
+		display: inline-block;
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		font-size: 14px;
+		text-align: center;
+		color: #969292;
+		border: 1px solid #8F8F8F;
+	}
+	.size_choose a:hover {
+		background: #E0CF5E;
+		border: 1px solid #000;
+	}
+	.adjust_board .red {
+		background: red;
+	}
+	.adjust_board .yellow {
+		background: yellow;
+	}
+	.adjust_board .blue {
+		background: #2990E1;
+	}
+	.color_style a:hover {
+		border: 1px solid #000;
+	}
+	.wrap1 {
+		width: 400px;
+		float: left;
+		text-align: center;
+	}
+	.wrap1 a {
+		display: inline-block;
+		height: 40px;
+		width: 80px;
+		background: #2CACD6;
+		color: #fff;
+		line-height: 40px;
+		margin-bottom: 30px;
+	}
+	.wrap1 a:hover {
+		background: #88A2E5;
+	}
+	.space {
+		margin-left: 4px;
+	}
+	
+</style>
+
+<body>
+<h2>为下面的Div设置样式:</h2>
+<strong id="config_btn">设置</strong>
+<div class="target"></div>
+
+<div class="cover"></div>
+<div class="adjust_board">
+	<div class="wrap">
+		<ul>
+			<li class="color_style">
+				<span>请选择背景色:</span>
+				<a class="red">红</a>
+				<a class="yellow">黄</a>
+				<a class="blue">蓝</a>
+			</li>
+			<li class="size_choose">
+				<span>请选择宽(px):</span>
+				<a class="width_setting space">200</a>
+				<a class="width_setting">300</a>
+				<a class="width_setting">400</a>
+			</li>
+			<li class="size_choose">
+				<span>请选择高(px):</span>
+				<a class="height_setting space">200</a>
+				<a class="height_setting">300</a>
+				<a class="height_setting">400</a>
+			</li>
+		</ul>
+	</div>
+	<div class="wrap1">
+		<a class="resume">恢复</a>
+		<a class="confirm">确定</a>
+	</div>
+</div>
+</body>
+</html>

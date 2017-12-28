@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>2_浮动的概念</title>
+</head>
+
+<style>
+	.div1, .span1 {width: 100px; height: 100px; background: pink; border: 1px solid black; float: left;}	
+	
+/* inline-block 特性:	
+	1. 使内嵌标签支持宽高;
+	2. 使块标签可同行显示;
+	3. 标签之间的代码换行被解析为间距;
+	4. 不设置宽度时, 内容会撑开宽度;
+	5. IE6\IE7下, 设置块标签为inline-block无效.
+*/
+	/* float 浮动 特性:	
+	1. 使内嵌标签支持宽高;
+	2. 使块标签可同行显示;
+	3. 不设置宽度时, 内容会撑开宽度.
+	既有inline-block的优点, 又避免了其缺点;
+	4. 脱离文档流; 文档流: 文档中可显示对象在排列时所占的位置.
+		文档流动方向和生成文档的方向是相反的, 比如我们删除了前面的文字, 后面的文字自动填充前面的空白处;
+	5. 提升层级半层; 一个盒模型中, 盒子本身是一图层, 盒子中的内容(文字,img标签等)是另一图层, 文字的图层在盒子之上, 如果把融合了内容之后的盒子看成是一个图层, 那么盒子本身是半个图层、其内容也是半个图层；所以我们看到下面的div2,div3代码, 在div2类浮动之后, div3会往上移动, 但里面的文字会停靠在div2的边缘, 可以理解成div3中的文字和浮动之后的div2的盒子本身同层;
+	
+	一个元素加了浮动之后, 会脱离文档流, 按照指定的方向移动, 直到碰到父级边界或其他浮动元素的边界才会停止;	
+*/
+	.div2, .div3 {width: 100px; height: 100px;}
+	.div2 {background: yellow; float: left;}
+	.div3 {background: lightgray; width: 200px; height: 200px; clear: both;}
+	
+/*	float 配合 clear:
+	clear: left/right/both/none
+	指定方向不能有浮动标签; (往往意味着要换行排列)
+	clear 只对块属性标签起作用;
+*/
+</style>
+
+<body>
+
+<!--
+<div class="div1">div1</div>
+<div class="div1">div2</div>
+<span class="span1">span1</span>
+<span class="span1">span2</span>
+-->
+
+<div class="div2">div3</div>
+<div class="div3">div4</div>
+
+</body>
+</html>

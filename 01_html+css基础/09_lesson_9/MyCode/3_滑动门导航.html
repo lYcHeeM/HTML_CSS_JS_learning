@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>3_滑动门导航</title>
+</head>
+
+<style>
+	body, ul {
+		margin: 0;
+		padding: 0;
+	}
+	body {
+		background: #23232f;
+	}
+	li {
+		list-style: none;
+	}
+	a {
+		text-decoration: none;
+		color: white;
+	}
+	
+	.navLeft {
+		margin: 30px 0 0 30px;
+		background: #0f0f14 url(img/nav_left.png) no-repeat;
+		float: left;
+		/* 
+			这个浮动的目的是令宽度由实际内容决定:
+			回顾一下如果要令块元素的宽度由内容撑开, 有哪些办法：
+				1. display: inline; 不支持高度, 排除;
+				2. dispaly: inline-block; ie6\7下不支持块标签;
+				3. float; 比较合适;
+				4. position: absolute; 要给每个子元素设置坐标, 麻烦;
+				5. position: fixed; 不太兼容, 暂不考虑;
+		*/
+	}
+	.navRight {
+		background: url(img/nav_right.png) no-repeat right 0;
+		padding: 4px 4px 0 4px;
+		/* 子元素有浮动, 也加个浮动, 否则包不住. 这里不用清浮动, 是因为考虑到父级为了某种效果加了浮动, 那么直接用float不会对父级造成影响. */
+		float: left;
+		/* 也可用清浮动的方法 */
+/*		overflow: hidden;*/
+	}
+	.navRight li {
+		/* 浮动到同一行 */
+		float: left;
+		padding-left: 1px;
+	}
+	
+	.navRight a {
+		/* 令a标签支持高度 */
+		float: left;
+		background: url(img/btn2.png) no-repeat;
+	}
+	.navRight span {
+		/* 令内联元素支持高度 */
+		float: left;
+		background: url(img/btn_right.png) no-repeat right 0;
+		height: 31px;
+		font-size: 14px;
+		line-height: 30px;
+		padding: 0 18px;
+	}
+	.navRight a:hover, .navRight .defaultSelected  {
+		background-image: url(img/btn2_sel_left.png);
+	}
+	.navRight a:hover span, .navRight .defaultSelected span {
+		background-image: url(img/btn_sel_right.png);
+	}
+</style>
+
+<body>
+<div class="navLeft">
+	<ul class="navRight">
+		<li>
+			<a href="3_滑动门导航.html" class="defaultSelected">
+				<span>主页</span>
+			</a>
+		</li>
+		<li>
+			<a href="3_滑动门导航_tab2.html">
+				<span>课程</span>
+			</a>
+		</li>
+		<li>
+			<a href="3_滑动门导航_tab3.html">
+				<span>关于</span>
+			</a>
+		</li>
+		<li>
+			<a href="3_滑动门导航_tab4.html">
+				<span>加入我们</span>
+			</a>
+		</li>
+	</ul>
+</div>
+</body>
+</html>

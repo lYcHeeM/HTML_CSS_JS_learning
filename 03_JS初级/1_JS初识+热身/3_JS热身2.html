@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>3_JS热身2</title>
+</head>
+
+<script type="text/javascript">
+	window.onload = function (){
+		var oBtn1 = document.getElementById('btn1');
+		var oBtn2 = document.getElementById('btn2');
+		var oStrong = document.getElementById('strong1');
+		var oDiv = document.getElementById('div1');
+		
+		oBtn1.onclick = show;
+		oBtn2.onclick = hide;
+		oStrong.onmouseover = show;
+		oStrong.onmouseout = hide;
+								  
+		function show() {
+			oDiv.style.display = 'block';
+		}
+		function hide() {
+			oDiv.style.display = 'none';
+		}
+	};
+</script>
+
+<style type="text/css">
+	div {
+		width: 200px;
+		height: 200px;
+		border: 5px solid #c1c1c1;
+		background: red;
+		display: none;
+	}
+</style>
+
+<body>
+<input id="btn1" type="button" value="显示" />
+<input id="btn2" type="button" value="隐藏" />
+<strong id="strong1" >我也要显示!!</strong>
+<div id="div1"></div>
+
+</body>
+</html>

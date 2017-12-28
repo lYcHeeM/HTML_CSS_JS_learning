@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>3_属性操作例子_className替换样式</title>
+</head>
+
+<script>
+	window.onload = function () {
+		var oBtn1 = document.getElementById('btn1');
+		var oBtn2 = document.getElementById('btn2');
+		var oBtn3 = document.getElementById('btn3');
+		var oBtn4 = document.getElementById('btn4');
+		var oP = document.getElementById('p1');	
+		
+		var defaultSize = 15;
+		oBtn1.onclick = function () {
+			oP.style.fontSize = defaultSize + 'px';
+			defaultSize --;
+		};
+		oBtn2.onclick = function () {
+			oP.style.fontSize = defaultSize + 'px';
+			defaultSize ++;
+		};
+		
+		oBtn3.onclick = function () {
+			oP.className = "red";	
+		};
+		oBtn4.onclick = function () {
+			oP.className = "yellow";	
+		};
+	};
+</script>
+
+<style>
+	.red {
+		width: 200px;
+		background: red;
+		border: 5px solid #ccc;
+		color: yellow;
+		padding: 10px 10px;
+	}
+	.yellow {
+		width: 400px;
+		background: yellow;
+		color: red;
+		border: 15px solid #ccc;
+		padding: 2px 2px;
+	}
+</style>
+
+<body>
+<input id="btn1" type="button" value="-" />
+<input id="btn2" type="button" value="+" />
+<input id="btn3" type="button" value="红" />
+<input id="btn4" type="button" value="黄" />
+<p id="p1" style="font-size: 15px;">http 500内部服务器（HTTP-Internal Server Error）错误说明IIS服务器无法解析ASP代码，访问一个静态页面试试是否也出现这个问题，如果访问静态页面没问题，那就要分以下几种 情况来分析了： ① 你是否改变过计算机名称。 ② 站点所在的文件目录是否自定义了安全属性。 ③ 安装了域控制器后是否调整了域策略。如果是其中的一种情况，请一一将 改变的参数设置回来看是否解决问题。 如果静态空间也无法访问，则说明解析还没生效</p>
+</body>
+</html>

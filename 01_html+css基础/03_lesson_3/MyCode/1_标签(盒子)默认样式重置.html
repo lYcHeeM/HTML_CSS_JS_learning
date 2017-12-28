@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>1_标签(盒子)默认样式重置(css reset)</title>
+</head>
+
+<style>
+	/* 
+	默认样式可以用浏览器的审查元素功能查看, 不同的浏览器默认样式不同, 尤其是IE6.
+	所以清除默认样式的目的就是为了适配不同的浏览器, 使视图(盒模型)在每个浏览器上的表现一致.
+	默认样式重置: Css reset;
+	*/
+	/* 清除外边距, 重置文字大小 */
+	body,p,h1,h2,h3,h4,h5,h6,dl,dd {margin: 0; font-size: 12px; /** 工作中还经常会重置字体 font-family */}
+	/* 清除列表的样式和内外边距 */
+	ol,ul {list-style: none; margin: 0; padding: 0;}
+	/* 清除a标签文本修饰 */
+	a {text-decoration: none;}
+	/* ie6中的img标签某些情况下会有边框, 去掉.	*/
+	img {border: none;}
+/* 不要用通配符, 太粗粒, 影响性能. 而应该使用群组选择语法. */
+/*	*{margin: 0; padding: 0;}*/
+</style>
+
+<body>
+<a href="#">a标签(链接, 下载, 锚点)</a>
+<img src="1.png" alt=""/>
+<a href="#"><img src="1.png" alt=""/></a>
+
+<div>块</div>
+<span>区分样式</span>
+<strong>强调(粗体)</strong>
+<em>强调(斜体)</em>
+
+<!--以上标签可以在同在一行显示, 称为内联\内嵌\行内属性标签-->
+
+<!--以下标签独占一行, 称为块-->
+
+<h1>标题1</h1>
+<h2>标题2</h2>
+<h6>标题6</h6>
+
+<p>段落</p>
+
+<ol>
+	<li>列表项</li>
+	<li>列表项</li>
+	<li>列表项</li>
+</ol>
+
+<ul>
+	<li>列表项1</li>
+	<li>列表项2</li>
+	<li>列表项3</li>
+</ul>
+
+<dl>
+	<dt>列表标题</dt>
+	<dd>列表项1</dd>
+	<dd>列表项2</dd>
+	<dd>列表项3</dd>
+</dl>
+
+</body>
+</html>

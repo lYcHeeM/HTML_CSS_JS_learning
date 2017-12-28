@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>6_简易的QQ好友列表</title>
+</head>
+
+<script>
+window.onload = function () {
+	var oWrapUl = document.getElementsByClassName('wrap')[0];
+	var aGroupLi = oWrapUl.getElementsByClassName('group');
+	
+	var lastActivedFriendLi = null;
+	for(var i = 0; i < aGroupLi.length; i ++) {
+		var oH3 = aGroupLi[i].getElementsByTagName('h3')[0];
+		// 这样做在下面的function获得的i一直会是2;
+//		var oUl = aGroupLi[i].getElementsByClassName('ul')[0];
+		oH3.index = i;
+		oH3.onclick = function () {
+			var oUl = aGroupLi[this.index].getElementsByTagName('ul')[0];
+			if(this.className == 'unfold') {
+				oUl.style.display = 'none';
+				this.className = '';
+			} else {
+				// 先收起所有展开了的分组
+				for(var i = 0; i < aGroupLi.length; i ++) {
+					var oH31 = aGroupLi[i].getElementsByTagName('h3')[0];
+					var oUl1 = aGroupLi[i].getElementsByTagName('ul')[0];
+					if(oH31.className == 'unfold') {
+						oH31.className = '';
+						oUl1.style.display = 'none';
+					}
+				}
+				oUl.style.display = 'block';
+				this.className = 'unfold';
+			}
+		};
+		
+		var afrendLi = aGroupLi[i].getElementsByTagName('li');
+		for (var j = 0; j < afrendLi.length; j ++) {
+			afrendLi[j].onclick = function (){
+				if(this.className == 'active') {
+					this.className = '';
+				} else {
+					// 不判断lastActivedFriendLi是否为空, 发现会阻塞接下来的代码
+					if(lastActivedFriendLi != null) {
+						lastActivedFriendLi.className = '';
+					}
+					this.className = 'active';
+					lastActivedFriendLi = this;
+				}
+			};
+		}
+	}
+};
+</script>
+
+<style>
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		list-style: none;
+	}
+	.wrap {
+		margin: 40px auto;
+		border: 1px solid #333;
+		border-bottom: none;
+		width: 300px;
+	}
+	.wrap h3 {
+		margin: 0;
+/*		宽度跟随父级 */
+/*		width: 300px;*/
+		height: 35px;
+		font-size: 18px;
+		font-weight: normal;
+		line-height: 35px;
+		background: url(img/ico1.gif) no-repeat 10px center;
+		background-color: #F4DA9F;
+		text-indent: 25px;
+		border-bottom: 1px solid #333;
+	}
+	.wrap ul {
+		display: none;
+	}
+	.wrap li li {
+/*		宽度跟随父级 */
+/*		width: 300px;*/
+		height: 20px;
+		line-height: 20px;
+		border-bottom: 1px solid #333;
+		text-align: center;
+	}
+	.wrap .unfold {
+		background: url(img/ico2.gif) no-repeat 10px center;
+		background-color: #52D0DC;
+	}
+	.active {
+		background-color: #374FDB;
+		color: #fff;
+	}
+</style>
+
+<body>
+<ul class="wrap">
+	<li class="group">
+		<h3>我的好友</h3>
+		<ul>
+			<li>张三</li>
+			<li>张三</li>
+			<li>张三</li>
+			<li>张三</li>
+			<li>张三</li>
+		</ul>
+	</li>
+	<li class="group">
+		<h3>企业好友</h3>
+		<ul>
+			<li>李四</li>
+			<li>李四</li>
+			<li>李四</li>
+			<li>李四</li>
+			<li>李四</li>
+			<li>李四</li>
+		</ul>
+	</li>
+	<li class="group">
+		<h3>黑名单</h3>
+		<ul>
+			<li>王五</li>
+			<li>小智</li>
+			<li>仇富</li>
+		</ul>
+	</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>6_综合应用简易图片切换</title>
+</head>
+
+<script>
+	window.onload = function (){
+		var oImg = document.getElementById('img');	
+		var oPrev = document.getElementById('prev');	
+		var oNext = document.getElementById('next');	
+		var oCounter = document.getElementById('counter');	
+		var oInfo = document.getElementById('info');	
+		
+		var arrImgUrl = ['img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg'];
+		var arrImgDesc = ['仙女', '复制人', '性感美女', '动漫女孩'];
+		var index = 0;
+		
+		function fnSwitch() {
+			oImg.src = arrImgUrl[index];
+			oCounter.innerHTML = (index + 1) + '/' + arrImgUrl.length;
+			oInfo.innerHTML = arrImgDesc[index];
+		}
+		
+		// 初始状态模拟正在加载图片, 两秒后显示第一张图
+		var timer = window.setTimeout(fnSwitch, 2000);
+		
+		oPrev.onclick = function() {
+			index --;
+			if(index < 0) {
+				index = arrImgUrl.length - 1;
+			}
+			fnSwitch();
+		};
+		oNext.onclick = function() {
+			index ++;
+			if(index >= arrImgUrl.length) {
+				index = 0;
+			}
+			fnSwitch();
+		};
+	};
+</script>
+<style>
+	#content {
+		width: 600px;
+		height: 400px;
+		margin: 100px auto;
+		background: #f1f1f1;
+		position: relative;
+	}
+	#img {
+		position: absolute;
+		width: 600px;
+		height: 400px;
+	}
+	#prev, #next {
+		width: 40px;
+		height: 40px;
+		border: 5px solid #EAE7E7;
+		background: #000;
+		color: #fff;
+		font-size: 25px;
+		font-weight: bold;
+		line-height: 40px;
+		text-align: center;
+		opacity: 0.4;
+		filter: alpha(40);
+		position: absolute;
+		top: 175px;
+	}
+	#prev:hover, #next:hover {
+		opacity: 0.8;
+		filter: alpha(80);
+		cursor: pointer;
+	}
+	#prev {
+		left: 10px;
+	}
+	#next {
+		right: 10px;
+	}
+	#counter, #info {
+		background: #000;
+		filter: alpha(65);
+		opacity: 0.65;
+		height: 40px;
+		line-height: 40px;
+		position: absolute;
+		width: 600px;
+		font-size: 16px;
+		color: #fff;
+		text-align: center;
+	}
+	#info {
+		bottom: 0;
+		margin: 0;
+	}
+</style>
+
+<body>
+<div id="content">
+	<img id="img" alt=""/>
+	<a id="prev"><</a>
+	<a id="next">></a>
+	<span id="counter">图片下标计算中...</span>
+	<p id="info">图片信息加载中...</p>
+</div>
+</body>
+</html>

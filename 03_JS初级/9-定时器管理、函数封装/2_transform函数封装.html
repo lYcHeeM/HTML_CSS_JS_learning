@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>1_clearInterval可以接受null和未定义类型的参数</title>
+</head>
+
+<script src="MyTools.js"></script>
+<script>
+    $(function () {
+        var oDiv = document.getElementsByTagName('div')[0];
+        var oBtn_left = $('btn1');
+        var oBtn_right = $('btn2');
+        var oBtn_top = $('btn3');
+        var oBtn_bottom = $('btn4');
+        var oBtn_stop = $('btn5');
+        var oBtn_reset = $('btn6');
+        var oBtn_transformWidth = $('btn7');
+        var oBtn_transformHeight = $('btn8');
+        var oBtn_transformAlpha = $('btn9');
+
+        var initialLeft = parseFloat(getStyle(oDiv, 'left'));
+        var initialTop = parseFloat(getStyle(oDiv, 'top'));
+        var initialRight = parseFloat(getStyle(oDiv, 'right'));
+        var initialBottom = parseFloat(getStyle(oDiv, 'bottom'));
+        var initialWidth = parseFloat(getStyle(oDiv, 'width'));
+        var initialHeight = parseFloat(getStyle(oDiv, 'height'));
+        var initialAlpha = parseFloat(getStyle(oDiv, 'opacity'));
+
+        function doTransform(obj, attrName, targetValue, velocity, stepLength, completion) {
+            if (obj.move_timer) return;
+            if (attrName == 'right') {
+                attrName = 'left';
+                stepLength = -stepLength;
+            }
+            if (attrName == 'bottom') {
+                attrName = 'top';
+                stepLength = -stepLength;
+            }
+            var currentAttrValue = parseFloat(getStyle(oDiv, attrName));
+            if (targetValue === currentAttrValue) return;
+            var isDirectionPositive = targetValue > currentAttrValue ? true : false;
+            stepLength = isDirectionPositive ? stepLength : -stepLength;
+            var isCompleted = false;
+            obj.move_timer = setInterval(function () {
+                // 实践发现, 需放在下一次定时器触发时判断是否完成, 此时obj的样式变化才算全部完成;
+                // 如果直接在改变oDiv.style的时候停止定时器并通知回调, 这样会有一种现象:
+                // 回调函数先触发, UI才得到人类视觉上的更新.
+                if (isCompleted) {
+                    clearInterval(obj.move_timer);
+                    obj.move_timer = null;
+                    if (typeof completion === 'function') {
+                        completion();
+                    }
+                    return;
+                }
+                var nextAttrValue = parseFloat(getStyle(oDiv, attrName)) + stepLength;
+                if ((nextAttrValue > targetValue && isDirectionPositive) || (nextAttrValue < targetValue && !isDirectionPositive)) {
+                    nextAttrValue = targetValue;
+                    isCompleted = true;
+                }
+                if(attrName === 'opacity') {
+                    oDiv.style[attrName] = nextAttrValue;
+                } else if (attrName === 'left' || attrName === 'top' || attrName === 'bottom' || attrName === 'right' || attrName === 'width' || attrName === 'height') {
+                    oDiv.style[attrName] = nextAttrValue + 'px';
+                }
+            }, velocity ? velocity : 30);
+        }
+
+        oBtn_left.onclick = function () {
+            doTransform(oDiv, 'left', 800, 30, 12, function () {
+                alert(1);
+            })
+        };
+
+        oBtn_right.onclick = function () {
+            doTransform(oDiv, 'right', 10, 30, 12, function () {
+                alert(2);
+            })
+        };
+
+        oBtn_top.onclick = function () {
+            doTransform(oDiv, 'top', 500, 30, 12, function () {
+                alert(1);
+            })
+        };
+
+        oBtn_bottom.onclick = function () {
+            doTransform(oDiv, 'bottom', 20, 30, 12, function () {
+                alert(1);
+            })
+        };
+
+        oBtn_stop.onclick = function () {
+            clearInterval(oDiv.move_timer);
+            oDiv.move_timer = null;
+        };
+
+        oBtn_reset.onclick = function () {
+            oDiv.style.left = initialLeft + 'px';
+            oDiv.style.top = initialTop + 'px';
+            oDiv.style.right = initialRight + 'px';
+            oDiv.style.bottom = initialBottom + 'px';
+            oDiv.style.width = initialWidth + 'px';
+            oDiv.style.height = initialHeight + 'px';
+            oDiv.style.opacity = initialAlpha;
+            clearInterval(oDiv.move_timer);
+            oDiv.move_timer = null;
+        };
+
+        oBtn_transformWidth.onclick = function () {
+            doTransform(oDiv, 'width', 500, 30, 12, function () {
+                alert('Width transforming completed!');
+            })
+        };
+        oBtn_transformHeight.onclick = function () {
+            doTransform(oDiv, 'height', 500, 30, 12, function () {
+                alert('Height transforming completed!');
+            })
+        };
+        oBtn_transformAlpha.onclick = function () {
+            doTransform(oDiv, 'opacity', 0.1, 30, 0.03, function () {
+                alert('Opacity transforming completed!');
+            })
+        };
+    })
+</script>
+
+<style>
+    div {
+        width: 100px;
+        height: 100px;
+        background-color: rebeccapurple;
+        position: relative;
+    }
+</style>
+
+<body>
+<input id="btn1" type="button" value="向右移动" />
+<input id="btn2" type="button" value="向左移动" />
+<input id="btn3" type="button" value="向下移动" />
+<input id="btn4" type="button" value="向上移动" />
+<input id="btn5" type="button" value="停止" />
+<input id="btn6" type="button" value="复位" />
+<input id="btn7" type="button" value="变化宽度" />
+<input id="btn8" type="button" value="变化高度" />
+<input id="btn9" type="button" value="变化不透明度" />
+
+<div></div>
+</body>
+</html>

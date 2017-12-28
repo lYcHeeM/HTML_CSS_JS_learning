@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>1_JS中的属性操作_1</title>
+</head>
+
+<script>
+	/*
+		HTML属性操作
+		
+		读: 获取、找到
+		
+		写: 替换、修改
+		
+		innerHTML属性: 替换元素内的所有html代码
+	*/
+	window.onload = function () {
+		var oText = document.getElementById('text');
+		var oSelect = document.getElementById('select');
+		var oBtn = document.getElementById('btn');
+		var oImg = document.getElementById('img');
+		var oP = document.getElementById('p');
+		
+		oBtn.onclick = function (){
+//			alert(oBtn.value);	
+//			oText.value = oSelect.value;
+//			oImg.src = oText.value;
+			// 比如在输入框输入这一串, p标签将会加载一张图片<img src = "img/3.jpg" alt="" />
+			oP.innerHTML = oText.value;	
+		};
+	};
+</script>
+
+<body>
+<input id="text" type="text" />
+<select id="select">
+	<option value="北京">北京</option>
+	<option value="上海">上海</option>
+	<option value="杭州">杭州</option>
+</select>
+<input id="btn" type="button" value="按钮" />
+<img id="img" src="img/1.jpg" alt=""/>
+<p id="p">哈哈哈哈</p>
+</body>
+</html>

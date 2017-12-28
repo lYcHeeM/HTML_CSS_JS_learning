@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>4_浮动综合练习_3</title>
+</head>
+
+<style>
+	body,h3,ul {margin: 0; padding: 0; font-family: "宋体";}
+	li {list-style: none;}
+	a {text-decoration: none; color: #333; font-size: 12px;}
+	img {border: none; vertical-align: top;}
+	strong {font-size: 12px; color: #333; display: block; text-align: center;}
+	
+	.wrap {margin: 30px auto; background: #f4fafb; padding-top: 11px; width: 374px;}
+	.clear {zoom: 1;}
+	.clear:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+	
+	.title {background: url(img/3_bg1.png) no-repeat;}
+	.title h3 {
+		background: url(img/3_bg2.png) no-repeat 8px 5.5px;
+		font-size: 12px;
+		line-height: 25px;
+		text-indent: 32px;
+	}
+	
+	.imageList {
+		padding: 15px 0 0 0;
+	}
+	.imageList li {
+		/*	17背景	*/
+		padding: 0 17px 0 7px;
+		margin: 0 9px 0 0;
+		/* ie6下浮动元素的双边距bug */
+		display: inline;
+		width: 91px;
+		float: left;
+		background: url(img/3_bg3.png) no-repeat right 17px;
+	}
+	.imageList img {
+		border: 1px solid #c8c4d3;
+		padding: 2px;
+	}
+	.imageList strong {
+		padding-top: 4px;
+		line-height: 22px;
+	}
+	
+	.textList {
+		padding: 0 25px;
+	}
+	.textList li {
+		line-height: 22px;
+		text-indent: 15px;
+		background: url(img/3_bg4.png) no-repeat 0 center;
+	 }
+	
+</style>
+
+<body>
+<div class="wrap">
+	<div class="title">
+		<h3>华语谍报</h3>
+	</div>
+	<ul class="imageList clear">
+		<li>
+			<a href="#">
+				<img src="img/3_pic1.png" />
+			</a>
+			<strong>大叔</strong>
+		</li>
+		<li>
+			<a href="#">
+				<img src="img/3_pic1.png" />
+			</a>
+			<strong>大叔</strong>
+		</li>
+		<li>
+			<a href="#">
+				<img src="img/3_pic1.png" />
+			</a>
+			<strong>大叔</strong>
+		</li>		
+	</ul>
+	<ul class="textList">
+		<li>
+			<a href="#">化妆，还是伪装？港三区美亚版《最强喜事》</a>
+		</li>
+		<li>
+			<a href="#">化妆，还是伪装？港三区美亚版《最强喜事》</a>
+		</li>
+		<li>
+			<a href="#">化妆，还是伪装？港三区美亚版《最强喜事》</a>
+		</li>
+	</ul>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>3_自定义属性应用2_点击按钮循环变换标题</title>
+</head>
+
+<body>
+<input type="button" value="0" />
+<input type="button" value="0" />
+<input type="button" value="0" />
+
+<script>
+	var aBtn = document.getElementsByTagName('input');
+	var titles = ['A', 'B', 'C', 'D'];
+	for (var i = 0; i < aBtn.length; i ++) {
+		aBtn[i].titleIndex = 0;
+		aBtn[i].onclick = function () {
+			this.value = titles[this.titleIndex];
+			this.titleIndex ++;
+			if(this.titleIndex >= titles.length) {
+				this.titleIndex = 0;
+			}
+		};
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>选择符</title>
+</head>
+
+<style>
+/*	id选择符	*/
+	#box1{width: 100px; height: 100px; background: yellow;}
+/*	群组选择符 */
+	#box1, #box2{width: 100px; height: 100px; background: yellow;}
+/*	class选择符, 一个标签可以有多个类别, 更常用 */
+	.box{width: 100px; height: 100px; background: red;}
+	.box2{border: 5px solid black;}
+/*	(标签)类型选择符  */
+	p{width: 200px; height: 100px; background: gray;}
+	/* 用空格来表示类型嵌套(层级), 以唯一指定某一类的标签 */
+	/* div 中的所有p标签 (包括了div span p) */
+	div p{width: 300px; height: 100px; background: orange;}
+	
+/*	通配符(*) 匹配所有元素  */
+/*	*{width: 200px; height: 100px; background: green;}*/
+</style>
+
+<body>
+<h3>id选择符</h3>
+<div id="box1">块</div>
+<div id="box2">块</div>
+
+<h3>class选择符</h3>
+<div class="box">块</div>
+<div class="box box2">块</div>
+<div class="box">块</div>
+
+<h3>标签类型选择符</h3>
+<p>p标签</p>
+<p>p标签</p>
+<p>p标签</p>
+<p>p标签</p>
+
+<h5>标签类型选择符--嵌套类型</h5>
+<div>
+	<p>p标签</p>
+	<p>p标签</p>
+	<span>
+		<p>div.span.p  p标签</p>
+	</span>
+</div>
+
+</body>
+</html>

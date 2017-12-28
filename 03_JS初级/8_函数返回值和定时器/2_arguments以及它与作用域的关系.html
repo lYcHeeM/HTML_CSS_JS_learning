@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>2_arguments以及它与作用域的关系</title>
+</head>
+
+
+
+<body>
+<script>
+    // 数字(NaN), 字符串, 布尔, 对象(元素\[]\{}\null), 未定义
+
+    function fun1(a, b, c) {
+        var res = a + b + c;
+        return res;
+    }
+    alert(fun1(1, 2, 3));
+
+    // 实际上, 即使定义函数时不写形参, 函数也接收了传给它的实参,
+    // 存放在一个叫做`arguments`的集合(和数组不一样)中
+    function fun2() {
+        var res = 0;
+        for(var i = 0; i < arguments.length; i ++) {
+            if(typeof arguments[i] === 'number') {
+                res += arguments[i];
+            }
+        }
+        return res;
+    }
+    alert(fun2(1, 2, 3, 4, 'abc'));
+
+    // arguments与作用域关系 举例
+        // 复习作用域
+//    var num = 1;
+//    function fn3() {
+//        alert(num); // undefined
+//        var num = 2;
+//    }
+//    fn3();
+//    alert(num); // 1
+
+    var a = 1;
+    function fn4(a) {
+        alert(a); // 5
+        arguments[0] = 6;
+        alert(a); // 6
+
+        var a = 2;
+        alert(a); // 2
+        alert(arguments[0]) //2
+    }
+    fn4(5);
+    alert(a); // 1
+
+</script>
+</body>
+</html>

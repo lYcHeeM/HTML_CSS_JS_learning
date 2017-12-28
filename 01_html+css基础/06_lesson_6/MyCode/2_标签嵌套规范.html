@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>2_标签嵌套规范</title>
+</head>
+
+<style>
+	p,h3 {background: red; width: 100px; height: 100px;}
+	/* 这样写之后, 发现浏览器出现3块红色的元素, 但html中只写了两个元素	*/
+	
+	/* 
+		标签嵌套规范:
+		p标签不能嵌套块属性标签
+	*/
+	span {display: block;}
+	/* 但发现使用转换成快属性的内嵌标签, 则不会影响, 说明浏览器在解析时会区分标签是否经过转换 */
+</style>
+
+<body>
+<p>
+<!--	<h3></h3> -->
+<span></span>
+</p>
+</body>
+</html>

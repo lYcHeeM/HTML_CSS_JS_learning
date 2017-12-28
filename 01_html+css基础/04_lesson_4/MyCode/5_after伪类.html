@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>5_after伪类</title>
+</head>
+
+<style>
+	p {width: 200px; border: 1px solid black;}	
+/* 追加内容和样式, 注意伪类前不能有空格	*/
+	p:after {content:"!!!!!!!!!!!!!!!!!!"; background: yellow; width:100px; height: 200px; display: block;}
+/* 追加的内容在浏览器的审查元素中看不到; */
+/* after伪类不支持ie6\7 */
+	p:hover {border: 2px solid red;}
+</style>
+
+<body>
+<p>哈哈哈哈哈哈</p>
+
+</body>
+</html>

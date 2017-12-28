@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>2_IE6下的双边距bug</title>
+</head>
+
+<style>
+	.box1 {border: 5px solid black; margin: 0 auto; float: left;}
+	.box2 {background: red; width: 100px; height: 100px; margin: auto 100px; float: left;}
+	
+	/*
+		IE6双边距bug: 浮动的块元素, 横向margin会解析成两倍
+		解决: 
+		1. 加一句display:inline;
+		2. 尽量用padding代替margin;
+		
+	*/
+</style>
+
+<body>
+<div class="box1">
+	<div class="box2"></div>
+</div>
+</body>
+</html>

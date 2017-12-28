@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>7_练习_带头像的简易聊天界面</title>
+</head>
+
+<script>
+window.onload = function (){
+	var oContent = document.getElementById('content');
+	var oFaceImg = document.getElementById('faceImg');
+	var oText = document.getElementById('text');
+	var oBtn = document.getElementById('btn');
+	var oBtn2 = document.getElementById('btn2');
+	var oBtn3 = document.getElementById('btn3');
+	
+	var face1Html = '<img class ="img1" src="img/face1.gif" alt="" />';
+	var face2Html = '<img class ="img2" src="img/face2.gif" alt="" />';
+	
+	var face1ImgSrc = 'img/face1.gif';
+	var face2ImgSrc = 'img/face2.gif';
+	var isFace1Img = true;
+
+	var shouldClearTextAfterSent = false;
+	
+	oFaceImg.onclick = function (){
+		if(isFace1Img) {
+			oFaceImg.src = face2ImgSrc;
+		} else {
+			oFaceImg.src = face1ImgSrc;
+		}
+		isFace1Img = !isFace1Img;
+	};
+	
+	oBtn.onclick = function (){
+		if(isFace1Img) {
+			var bubbleSelfHtml = '<p class="bubbleSelf">说: ' + oText.value + '</p>'
+			oContent.innerHTML = '<div class="bubbleSelfWrapper">' + bubbleSelfHtml + '</div>'  + face1Html  + '<br/>' + oContent.innerHTML;
+		} else {
+			var bubbleOtherHtml = '<p class="bubbleOther">说: ' + oText.value + '</p>'
+			oContent.innerHTML = face2Html + '<div class="bubbleOtherWrapper">' + bubbleOtherHtml + '</div>' + '<br/>' + oContent.innerHTML;
+		}
+		
+		if(shouldClearTextAfterSent) {
+			oText.value = '';	
+		}
+	};
+	
+	oBtn2.onclick = function (){
+		shouldClearTextAfterSent = !shouldClearTextAfterSent;
+	};
+	
+	oBtn3.onclick = function (){
+		oContent.innerHTML = '';	
+	};
+};
+</script>
+
+<style>
+	#content {
+		width: 300px;
+		height: 400px;
+		font-size: 16px;
+		border: 2px solid #333;
+		background: #f1f1f1;
+		overflow-y: scroll;
+	}
+	img {
+		width: 30px;
+		height: 30px;
+	}
+	
+	.bubbleSelfWrapper, .bubbleOtherWrapper {
+		/*	图片占用30px, padding占用10px, 留给右侧滚动条20px的距离(否则img会被挤到下一行去), 300-30-10-20 = 240	*/
+		width: 240px;
+		/* 为了和img标签保持一行 */
+		display: inline-block;
+		padding: 5px 5px;
+	}
+	.bubbleSelfWrapper {
+		text-align: right;
+	}
+	.bubbleSelf, .bubbleOther {
+		margin: 0;
+		display: block;
+		word-break: break-all;
+	}
+	.bubbleSelf {
+		background: #27BD37;
+		float: right; 
+	}
+	.bubbleOther {
+		background: #AB9696;
+		float: left;
+	}
+	
+	#faceImg {
+		margin-top: 5px;
+	}
+	span {
+		font-size: 11px;
+	}
+</style>
+
+<body>
+<div id="content">
+</div>
+<img id="faceImg" src="img/face1.gif" alt="" />
+<input id="text" type="text" />
+<input id="btn" type="button" value="发送" />
+<br/>
+<span>发送成功清空输入框</span>
+<input id="btn2" type="checkbox" value="" />
+<input id="btn3" type="button" value="清空聊天记录" />
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>7_作业1_带缩略图的图片切换控件</title>
+</head>
+
+<script type="text/javascript">
+window.onload = function() {
+	var oImgArea = document.getElementsByClassName('imgArea')[0];
+	var oMainImg = oImgArea.getElementsByClassName('mainImg')[0];
+	var oSpan = oImgArea.getElementsByTagName('span')[0];
+	var oP = oImgArea.getElementsByTagName('p')[0];
+	var oUl = oImgArea.getElementsByTagName('ul')[0];
+
+	var aImgUrl = ['img/1.png', 'img/2.png', 'img/3.png', 'img/4.png'];
+	var aImgInfo = ['第一张', '第二张', '第三张', '第四张'];
+
+	function fnRefreshImgData(index) {
+        oMainImg.src = aImgUrl[index];
+        oSpan.innerHTML = index + 1 + '/' + aImgUrl.length;
+        oP.innerHTML = aImgInfo[index];
+    }
+
+
+    oMainImg.index = 0;
+	// 先给一个临时的高度
+	oMainImg.style.height = '300px';
+	function fnInitialize() {
+		oImgArea.style.background = 'none';
+		fnRefreshImgData(0);
+		oMainImg.style.height = '';
+
+		var ulHtml = '';
+		for(var i = 0; i < aImgUrl.length; i ++) {
+			ulHtml += '<li><a></a><img src="' + aImgUrl[i] + '" alt=""></li>'
+		}
+		oUl.innerHTML = ulHtml;
+		oUl.style.display = 'block';
+		// 令ul居中
+		oUl.style.left = parseInt((oImgArea.clientWidth - oUl.clientWidth)/2) + 10/* 加10是考虑到li有padding right */ + 'px';
+	};
+	window.setTimeout(fnInitialize, 1500);
+
+    var oPrev = oImgArea.getElementsByClassName('prev')[0];
+    var oNext = oImgArea.getElementsByClassName('next')[0];
+    oPrev.onclick = function () {
+        var index = oMainImg.index - 1;
+        if(index < 0) {
+            index = aImgUrl.length - 1;
+        }
+        fnRefreshImgData(index);
+        oMainImg.index = index;
+    };
+    oNext.onclick = function () {
+        var index = oMainImg.index + 1;
+        if(index >= aImgUrl.length) {
+            index = 0;
+        }
+        fnRefreshImgData(index);
+        oMainImg.index = index;
+    };
+
+
+    function fnSetupLiEvents() {
+        var aLi = oImgArea.getElementsByTagName('li');
+        for (var i = 0; i < aLi.length; i ++) {
+            aLi[i].index = i;
+            aLi[i].onmouseover = function () {
+                var oPreviewImg = this.getElementsByTagName('img')[0];
+                oPreviewImg.style.display = 'block';
+            };
+            aLi[i].onmouseout = function () {
+                var oPreviewImg = this.getElementsByTagName('img')[0];
+                oPreviewImg.style.display = 'none';
+            };
+            aLi[i].onclick = function () {
+                fnRefreshImgData(this.index);
+            };
+        }
+    }
+    window.setTimeout(fnSetupLiEvents, 1500);
+};
+</script>
+<style>
+	body {
+		background: #6F6D6D;
+	}
+	li {
+		list-style: none;
+	}
+	.imgArea {
+		width: 400px;
+		margin: 50px auto;
+		position: relative;
+		background: url(img/loader_ico.gif) no-repeat center;
+	}
+	.mainImg {
+		display: block;
+		width: 400px;
+		vertical-align: bottom;
+	}
+	.prev, .next {
+		width: 60px;
+		height: 60px;
+		border: 6px solid #E2C7E8;
+		position: absolute;
+		top: 50%;
+		margin-top: -36px;
+		font-size: 38px;
+		font-weight: bold;
+		color: #fff;
+		line-height: 60px;
+		text-align: center;
+		background-color: black;
+		opacity: 0.4;
+		filter: alpha(40);
+	}
+	.prev:hover, .next:hover {
+		opacity: 0.7;
+		filter: alpha(70);
+	}
+	.next {
+		right: 0;
+	}
+	span, p {
+		width: 400px;
+		font-size: 14px;
+		color: #fff;
+		background: black;
+		text-align: center;
+		opacity: 0.7;
+		filter: alpha(70);
+		position: absolute;
+		margin: 0;
+	}
+	p {
+		bottom: 0;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		bottom: -40px;
+		display: none;
+	}
+
+	li {
+		float: left;
+		position: relative;
+	}
+	li a {
+		display: block;
+		width: 20px;
+		height: 20px;
+		background: #EAE6A5;
+		margin-right: 20px;
+	}
+	li a:hover {
+		background: #54DCD3;
+	}
+	li img {
+		background-color: #fff;
+		border: 2px solid #E6E1E1;
+		width: 100px;
+		height: 80px;
+		padding: 10px;
+		position: absolute;
+		/* 相对于li居中, img宽度: 100 + 2*10 + 2*2 = 124, (124 - li宽度(此处用可见宽度计算, 即为20px))/2 = 52px; */
+		left: -52px;
+		top: -110px;
+		display: none;
+	}
+	
+	.clear_float {
+		zoom: 1;
+	}
+	.clear_float:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+}
+</style>
+
+<body>
+<div class="imgArea">
+	<span>图片数量计算中...</span>
+	<img class="mainImg" alt="" />
+	<a class="prev"><</a>
+	<a class="next">></a>
+	<p>图片描述加载中</p>
+	<ul class="clear_float">
+        <!--
+		<li>
+			<a></a>
+			<img src="img/1.png" alt="">
+		</li>
+		<li>
+			<a></a>
+			<img src="img/2.png" alt="">
+		</li>
+		<li>
+			<a></a>
+			<img src="img/3.png" alt="">
+		</li>
+		<li>
+			<a></a>
+			<img src="img/4.png" alt="">
+		</li>
+ -->
+    </ul>
+</div>
+</body>
+</html>

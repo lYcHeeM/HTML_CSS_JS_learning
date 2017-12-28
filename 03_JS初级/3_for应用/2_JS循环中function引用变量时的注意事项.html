@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>2_JS循环中function引用变量时的注意事项</title>
+</head>
+
+<script>
+window.onload = function (){
+	var oBtn = document.getElementsByTagName('input')[0];
+	for(var i = 0; i < 3; i++) {
+		oBtn.onclick = function () {
+			// 发现此处的i是3, 和swift的闭包不一样
+			alert(i);	
+		};
+	}
+};
+</script>
+
+<body>
+<input type="button" value="按钮" />
+</body>
+</html>

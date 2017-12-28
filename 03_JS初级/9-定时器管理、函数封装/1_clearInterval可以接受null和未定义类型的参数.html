@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>1_clearInterval可以接受null和未定义类型的参数</title>
+</head>
+
+<script src="MyTools.js"></script>
+<script>
+    $(function () {
+        var oDiv = document.getElementsByTagName('div')[0];
+        var oBtn1 = $('btn1');
+        var oBtn2 = $('btn2');
+        var oBtn3 = $('btn3');
+
+        var initialLeft = parseInt(getStyle(oDiv, 'left'));
+        var stopPosition = 800;
+
+        oBtn1.onclick = function () {
+            if(oDiv.timer) {
+                return;
+            }
+
+            oDiv.timer = setInterval(function () {
+                var nextLeft = parseInt(getStyle(oDiv, 'left')) + 13;
+                if(nextLeft > stopPosition) {
+                    left = stopPosition;
+                    clearInterval(oDiv.timer);
+                }
+                oDiv.style.left = nextLeft + 'px';
+            }, 30);
+        };
+
+        oBtn2.onclick = function () {
+            clearInterval(oDiv.timer);
+            oDiv.timer = null;
+        };
+
+        oBtn3.onclick = function () {
+            oDiv.style.left = initialLeft + 'px';
+            clearInterval(oDiv.timer);
+            oDiv.timer = null;
+        };
+    })
+</script>
+
+<style>
+    div {
+        width: 100px;
+        height: 100px;
+        background-color: rebeccapurple;
+        position: relative;
+    }
+</style>
+
+<body>
+<input id="btn1" type="button" value="移动" />
+<input id="btn2" type="button" value="停止" />
+<input id="btn3" type="button" value="复位" />
+<div></div>
+</body>
+</html>

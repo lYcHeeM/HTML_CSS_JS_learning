@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>4_自定义属性应用3_索引值</title>
+</head>
+
+<body>
+<input type="button" value="按钮1" />
+<input type="button" value="按钮2" />
+<input type="button" value="按钮3" />
+<p>a</p>
+<p>b</p>
+<p>c</p>
+<p>d</p>
+
+<script>
+	// 索引值常用于映射、关联、匹配不同的集合；
+	var aBtn = document.getElementsByTagName('input');
+	var aP = document.getElementsByTagName('p');
+	
+	var titles = ['张沈', '督抚', '五旅'];
+	for (var i = 0; i < titles.length; i ++) {
+		aBtn[i].index = i;
+		aBtn[i].onclick = function () {
+			this.value = titles[this.index];
+			aP[this.index].innerHTML = titles[this.index];
+		};
+	}
+	
+	
+</script>
+</body>
+</html>

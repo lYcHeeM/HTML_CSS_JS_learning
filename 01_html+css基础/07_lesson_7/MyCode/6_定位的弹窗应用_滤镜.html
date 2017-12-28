@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>6_定位的弹窗应用_滤镜</title>
+</head>
+
+<style>
+	body {
+		margin: 0;
+	}
+	.cover {
+		/*	与窗口宽高一致	*/
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: black;
+		opacity: 0.3;
+		/*	适配ie8及以下, 需用ie私有的滤镜属性	*/
+		filter:alpla(opacity=30);
+	}
+	/* body、html默认没有高度，此处为了令cover再ie6下也能充满浏览器窗口，需设置body、html的高度等于文档的高度	*/
+	body, html {
+		height: 100%;
+	}
+	.alert {
+		width: 400px;
+		height: 200px;
+		border: red solid 20px;
+		background: white;
+		position: absolute;
+		/*	居中	*/
+		top: 50%;
+		left: 50%;
+		/*	这样只能令盒子左上角居中,需要配合margin,同时要注意padidng\border会算入和模型,而宽高不包括内边距和边框	*/
+		margin-top: -120px;
+		margin-left: -220px;
+	}
+</style>
+
+<body>
+
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容<br/>
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容<br/>
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容<br/>
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容<br/>
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容<br/>
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容<br/>
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容<br/>
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容<br/>
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容<br/>
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容<br/>
+
+<div class="cover">
+</div>
+<div class="alert">
+</div>
+
+</body>
+</html>

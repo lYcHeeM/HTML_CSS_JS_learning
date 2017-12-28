@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>1_浮动引起的IE文字左边距</title>
+</head>
+
+<style>
+	.box {width: 800px;}
+	.box1 {width: 200px; height: 400px; background: red; float: left;}
+	.box2 {width: 300px;}
+	/* 正常情况下, box1浮动后, box2会在同一行紧贴box1, 没有丁点空隙. 但在IE6\7下, 会有几像素的间距, 可以给box2加一个浮动来解决.	*/
+	.box2 {float: left;}
+</style>
+
+<body>
+<div class="box">
+	<div class="box1"></div>
+	<div class="box2">
+		当一个元素有一个布局时，它负责对自己和可能的子孙元素进行尺寸计算和定位。简单来说，这意味着这个元素需要花更多的代价来维护自身和里面的内容，而不是依赖于祖先元素来完成这些工作。因此，一些元素默认会有一个布局。当我们说一个元素“拥有layout”或“得到layout”，或者说一个元素“has layout” 的时候，我们的意思是指它的微软专有属性 hasLayout 被设为了 true。一个“layout元素”可以是一个默认就拥有 layout 的元素或者是一个通过设置某些 CSS 属性得到 layout的元素。通过 IE Developer Toolbar 可以查看 IE 下 HTML元素是否拥有haslayout，在 IE Developer Toolbar 下，拥有 haslayout的元素，通常显示为“haslayout = -1”。
+	</div>
+</div>
+</body>
+</html>

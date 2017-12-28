@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>1_JS中的数据类型</title>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<body>
+<script type="application/javascript">
+    // 数字(包括了NaN), 字符串, 布尔, 函数, 对象([], json, window, document, null), 未定义
+
+    // 未定义变量
+    var undefinedVar;
+
+    // NaN 不会等于自己
+    var nan = Number('100px');
+//    alert(nan); // NaN
+//    alert(typeof nan); // number
+//    if(nan != nan) {
+//        alert(1);
+//    }
+//    if(nan !== nan) {
+//        alert(2);
+//    }
+    // 种判断某个变量是否时数字的方法: isNaN(), 这个函数内部将调用Number()函数来判断一个对象是否可以转成数字
+//    var value = '100';
+//    if(isNaN(value)) {
+//        alert('不是数字');
+//    } else {
+//        alert('是数字');
+//    }
+
+
+    // 空对象
+//    var naer = null;
+//    alert(typeof naer); // object
+
+    // 字符串转数字
+//    var str = '100.2px';
+//    var num = Number(str);
+//    alert(num); // NaN
+//    num = parseInt(str);
+//    alert(num); // 100
+//    num = parseFloat(str);
+//    alert(num); // 100.2
+</script>
+</body>
+</html>

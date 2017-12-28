@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>7_CSS精灵</title>
+</head>
+
+<style>
+	/* 请求网页内容的时候, 每张图片都需要发一个http请求, 如果图片数量过多, http请求将很频繁, 访问量大的情况下, 会对服务器造成显著的压力. 可以把多张小图片合成一张, 用backgroud-position来从这张较大的图片得到想要的icon.	*/
+	/* 
+		CSS精灵的优缺点:
+		优点: 
+			大大减少http请求的次数;
+			一般能缩小图片总的体积, 多张图片合到一张发现图片总体积会变小.
+		缺点: 
+			降低开发效率, 一是要合图, 二是要标出background-position;
+			维护成本变高, 因为图片的positon都是写死的.
+	*/
+	.roundedBox {
+		width: 300px;
+		margin: 30px auto;
+	}	
+	.boxHead, .boxHeadLeft, .boxHeadRight, .boxFoot, .boxFootLeft, .boxFootRight {
+		background: url(img2/icons.png) no-repeat;
+	}
+	.boxHeadRight, .boxFootRight {
+		height: 9px;
+		overflow: hidden;
+	}
+	.boxHead {
+		background-repeat: repeat-x;
+	}
+	.boxHeadLeft {
+		background-position: 0 -9px;
+	}
+	.boxHeadRight {
+		background-position: right -18px;
+	}
+	
+	.boxContent {
+		border-left: 1px solid #989898;
+		border-right: 1px solid #989898;
+	}
+	
+	.boxFoot {
+		background-position: 0 -27px;
+		background-repeat: repeat-x;
+	}
+	
+	.boxFootLeft {
+		background-position: 0 -36px;
+	}
+	.boxFootRight {
+		background-position: right -45px;
+	}
+</style>
+
+<body>
+<div class="roundedBox">
+	<div class="boxHead">
+		<div class="boxHeadLeft">
+			<div class="boxHeadRight"></div>
+		</div>
+	</div>
+	
+	<div class="boxContent">
+		&nbsp;&nbsp;内容<br/>
+		&nbsp;&nbsp;内容<br/>
+		&nbsp;&nbsp;内容<br/>
+		&nbsp;&nbsp;内容<br/>
+		&nbsp;&nbsp;内容<br/>
+		&nbsp;&nbsp;内容<br/>
+		&nbsp;&nbsp;内容<br/>
+		&nbsp;&nbsp;内容<br/>
+	</div>
+	
+	<div class="boxFoot">
+		<div class="boxFootLeft">
+			<div class="boxFootRight"></div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

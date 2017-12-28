@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>5_点语法可以替换成中括号语法</title>
+</head>
+
+<script>
+	window.onload = function() {
+		var oText1 = document.getElementById('text1');
+		var oText2 = document.getElementById('text2');
+		var oBtn = document.getElementById('btn1');
+		var oDiv = document['getElementById']('div1');
+		
+		oBtn.onclick = function () {
+			oDiv.style[oText1.value] = oText2.value;	
+		};
+	};
+</script>
+
+<style>
+	div {
+		width: 400px;
+		height: 100px;
+		border: 1px solid #333;
+	}
+</style>
+
+<body>
+<span>请输入属性名称: </span><input id="text1" type="text" />
+<br/>
+<span>请输入属性值: </span><input id="text2" type="text" />
+<input id="btn1" type="button" value="确定" />
+<div id="div1"></div>
+</body>
+</html>

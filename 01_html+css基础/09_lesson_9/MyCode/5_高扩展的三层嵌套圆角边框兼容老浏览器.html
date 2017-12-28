@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>5_高扩展的三层嵌套圆角边框兼容老浏览器</title>
+</head>
+
+<style>
+	/* 一个宽度由父级决定, 高度由内容撑开, 圆角宽高为9px的盒子	*/
+	/* 存在的问题, 因为圆角图片都不是透明的, 只要一改背景色, 就可看到圆角图片会覆盖部分背景 */
+/*
+	body { background: black; }
+*/
+	.roundedBox {
+		width: 300px;
+		margin: 30px auto;
+	}	
+	.boxHead {
+		background: url(img2/boxHead.png) repeat-x;
+	}
+	.boxHeadLeft {
+		background: url(img2/boxHeadL.png) no-repeat;
+	}
+	.boxHeadRight {
+		background: url(img2/boxHeadR.png) no-repeat right 0;
+		height: 9px;
+		overflow: hidden;
+	}
+	
+	.boxContent {
+		border-left: 1px solid #989898;
+		border-right: 1px solid #989898;
+	}
+	
+	.boxFoot {
+		background: url(img2/boxFoot.png) repeat-x;
+	}
+	.boxFootLeft {
+		background: url(img2/boxFootL.png) no-repeat;
+	}
+	.boxFootRight {
+		background: url(img2/boxFootR.png) no-repeat right 0;
+		height: 9px;
+		overflow: hidden;
+	}
+</style>
+
+<body>
+<div class="roundedBox">
+	<div class="boxHead">
+		<div class="boxHeadLeft">
+			<div class="boxHeadRight"></div>
+		</div>
+	</div>
+	
+	<div class="boxContent">
+		&nbsp;&nbsp;内容<br/>
+		&nbsp;&nbsp;内容<br/>
+		&nbsp;&nbsp;内容<br/>
+		&nbsp;&nbsp;内容<br/>
+		&nbsp;&nbsp;内容<br/>
+		&nbsp;&nbsp;内容<br/>
+		&nbsp;&nbsp;内容<br/>
+		&nbsp;&nbsp;内容<br/>
+	</div>
+	
+	<div class="boxFoot">
+		<div class="boxFootLeft">
+			<div class="boxFootRight"></div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

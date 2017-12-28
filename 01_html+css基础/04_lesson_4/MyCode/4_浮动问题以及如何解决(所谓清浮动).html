@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>5_浮动问题以及如何解决(所谓清浮动)</title>
+</head>
+
+<style>
+	.box { border: 5px solid black; margin: 0 auto;}
+	.floatBox {width: 100px; height: 100px; float: left; background: red;}
+	/* 问题: 默认情况下, 子元素的内容可以撑开父级元素的宽高, 但子元素浮动后, 脱离了文档流, 父元素便包不住子元素; */
+	.assitantClear {height: 0; font-size: 0 /* 考虑IE6\7的最小元素高度 */; clear: both;}
+	.clear:after {content: ""; display: block; clear: both;} 
+	.clear {zoom: 1;} /** 业界常用zoom来触发ie6\7的haslayout */
+/*	.clear {overflow: auto; zoom: 1;}*/
+	
+	/*
+		解决办法: (称作"(给父元素)清浮动")
+		1. 父级元素也浮动起来; 但会带来很多问题, 比如, 父级的父级会面临同样的问题;
+		2. 给父级元素加上inline-block属性; 虽然不会影响父级的父级, 但居中效果还是没了, 父级会随着float left靠左排列;
+		3. 在浮动元素下加一个高度为零的元素, 再对这个元素运用clear属性, 作用相当于辅助线;
+			3.1 IE6\IE7下会有问题, 这两个浏览器下, 很多标签会有最小高度(19px), 即使设置font-size为0, 依然会有2px的高度;
+			3.2 再者, w3c规范有css、html独立这一条，最好不要把样式的代码侵入html；
+		4. 和第3条一样的原理、一样的缺点, 用一个没有高度的元素: <br clear="all"/>;
+		5. 3的另一种写法, 利用after伪类(不支持ie6\7), 做到不入侵HTML代码;
+		6. 推荐方法, 先用5对除ie6\7外的浏览器实现"清浮动"效果, 即在合适的位置为浮动元素的父级追加一个应用clear的空内容; 而为了适配ie6\7, 再加一个zoom来触发haslayout, 这样即使子元素浮动, 父元素也能包住它;
+		7. 给父级元素加上overflow: auto; 但在ie6下, overflow无法包住浮动元素, 所以也要配合zoom使用;
+	*/
+	
+	/*
+		IE6\7下浮动元素的父级如果有宽度, 就可不用清浮动, 原因:
+		haslayout IE 布局引擎中的一个bool值, 在用了某些标签和样式后会被置为true(意思是一个元素有了布局), 当被置为ture时, 意味着自己的内容发生了变化或父级元素的内容发生了变化, 以至于需要重新计算宽高;
+		
+		比如下面这些样式:
+		display: inline-block;
+		zoom: 除normal外的任何值;
+		width: auto除外;
+		height: auto除外;
+		float: left或right;
+	*/
+</style>
+
+<body>
+<div class="box clear">
+	<div class="floatBox"></div>
+<!--	<div class="assitantClear"></div> -->
+<!--	<br style = "clear: both;" /> -->
+<!--	<br clear="all"/>-->
+</div>
+</body>
+</html>

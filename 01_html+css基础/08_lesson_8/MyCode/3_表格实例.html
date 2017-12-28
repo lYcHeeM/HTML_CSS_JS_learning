@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>3_表格实例</title>
+</head>
+
+<style>
+	table {
+		width: 640px;
+		border-collapse: collapse;
+	}
+	th, td {
+		border: 1px #9ab1d8 solid;
+	}
+	th {
+		background: #dbe3f9;
+		font-size: 14px;
+		height: 30px;
+	}
+	td {
+		font-size: 12px;
+		text-align: center;
+		height: 28px;
+	}
+	img {
+		vertical-align: top;
+	}
+	/*	用于分割的行 */
+	.separator {
+		height: 4px;
+		border: none;
+		overflow: hidden;
+	}
+</style>
+
+<body>
+<table>
+	<th colspan="2" width="174px">日期</th>
+	<th colspan="2" width="174px">天气现象</th>
+	<th width="96px">气温</th>
+	<th width="96px">风向</th>
+	<th width="96px">风力</th>
+	
+	<tr>
+		<td rowspan="2" width="96px">22日星期五</td>
+		<td>白天</td>
+		<td width="64px"> <img src="img/sun.jpg" alt=""/> </td>
+		<td>晴间多云</td>
+		<td>高温 7℃</td>
+		<td>无持续风向</td>
+		<td>微风</td>
+	</tr>
+	
+	<tr>
+		<td>夜间</td>
+		<td> <img src="img/sun.jpg" alt=""/> </td>
+		<td>晴</td>
+		<td>低温 -4℃</td>
+		<td>无持续风向</td>
+		<td>微风</td>
+	</tr>
+	
+<!-- 分割行	-->
+	<tr>
+		<td colspan="7" class="separator"></td>
+	</tr>
+	
+	<tr>
+		<td rowspan="2">23日星期六</td>
+		<td>白天</td>
+		<td> <img src="img/sun.jpg" alt=""/> </td>
+		<td>晴</td>
+		<td>高温 9℃</td>
+		<td>无持续风向</td>
+		<td>微风</td>
+	</tr>
+	
+	<tr>
+		<td>夜间</td>
+		<td> <img src="img/sun.jpg" alt=""/> </td>
+		<td>阴</td>
+		<td>低温 -2℃</td>
+		<td>无持续风向</td>
+		<td>微风</td>
+	</tr>
+</table>
+
+</body>
+</html>

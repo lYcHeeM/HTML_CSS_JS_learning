@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>6_高扩展的三层嵌套圆角边框改进(透明圆角)</title>
+</head>
+
+<style>
+	body {
+		background: black;
+	}
+	.box1 {
+		width: 300px;
+		margin: 30px auto;
+		background: url(img3/boxHeadRepeat.png) repeat-x;
+	}
+	.box1 .boxLeft {
+		background: url(img3/boxHeadL.png) no-repeat;
+		position: relative;
+		left: -9px;
+	}
+	.box1 .boxRight {
+		background: url(img3/boxHeadR.png) no-repeat right 0;
+		height: 25px;
+		position: relative;
+		/* boxRight是boxLeft的子元素, boxLeft向左移动9像素后, 会带着boxRight也向左移动9像素, 此时如果要令右边的圆角连接在主体部分的右边(而不是直接覆盖主体的右部), 则要移动双倍的9像素.  */
+		right: -18px;
+	}
+	/*	左右圆角均移动9像素后, 整个盒子的宽度将变成300 + 2*9 像素, 所以要提前考虑到这一点  */
+	.box1 {
+		width: 282px;
+	}
+	
+	/* 上面是用相对定位实现圆角左右连接而不是覆盖的效果, 比较麻烦, 下面用margin实现相同的效果	*/
+	.box2Left {
+		margin: 100px auto;
+		width: 300px;
+		background: url(img3/boxHeadL.png) no-repeat;
+	}
+	.box2Right {
+		background: url(img3/boxHeadR.png) no-repeat right 0;
+	}
+	.box2 {
+		margin: 9px;
+		background: url(img3/boxHeadRepeat.png) repeat-x;
+		height: 25px;
+	}
+</style>
+
+<body>
+<div class="box1">
+	<div class="boxLeft">
+		<div class="boxRight"></div>
+	</div>
+</div>
+
+
+<div class="box2Left">
+	<div class="box2Right">
+		<div class="box2"></div>
+	</div>
+</div>
+</body>
+</html>

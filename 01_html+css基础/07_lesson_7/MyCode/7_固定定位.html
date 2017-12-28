@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>7_固定定位</title>
+</head>
+
+<style>
+	body { 
+		height: 2000px;
+	}
+	.box1 {
+		width: 500px;
+		height: 100px;
+		background: red;
+		position: absolute;
+		right: 0;
+		bottom: 0;
+	}
+	.box2 {
+		width: 200px;
+		height: 200px;
+		background: blue;
+		position: fixed;
+		right: 0;
+		bottom: 0;
+	}
+	.relative {
+		width: 300px;
+		height: 300px;
+		border: solid black 2px;
+		position: relative;
+	}
+	
+	/* 
+		固定定位和绝对定位的属性基本一致, 唯一的不同是固定定位始终相对整个文档偏移, 不受定位父级的影响;
+		常见的应用是把一个盒子固定再页面的某个位置, 其位置不受body内容滚动的影响;
+		ie6不支持固定定位, 要实现固定定位效果并兼容ie6, 需配合js.
+	*/
+</style>
+
+<body>
+<div class="box1"></div>
+<div class="relative">
+	<div class="box2"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>1_高可扩展圆角_三层重叠</title>
+</head>
+
+<style>
+	.btn {
+		width: 200px;
+		margin: 30px auto;
+		background: url(img/btn.png) repeat-x;
+	}
+	.btnLeft {
+		background: url(img/btn_left.png) no-repeat 0 center;
+	}
+	.btnRight {
+		/* 
+		默认情况下, 子元素继承父元素的宽度, 父元素的高度由子元素撑开, 所以此处在最深层的子元素设置高度.
+		还有, 也必须在最深层的子元素上设置文字, 避免再前层子元素设置内容后, 占用高度导致后层子元素被折行.
+		*/
+		height: 31px;
+		color: white;
+		background: url(img/btn_right.png) no-repeat right center;
+		text-align: center;
+		line-height: 31px;
+	}
+</style>
+
+<body>
+<div class="btn">
+	<div class="btnLeft">
+		<div class="btnRight">
+			三层嵌套圆角元素
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>1_getElementsByTagName获取元素</title>
+</head>
+
+<script>
+window.onload = function (){
+	var oUl = document.getElementById('list');
+	var oUl1 = document.getElementsByTagName('ul')[0];
+	/* 
+	getElementById:
+		因为id的作用域是整个document的, 所以一般对document进行id查找;
+		静态方法, 用变量引用后, 使用变量的时候不会再次查找;
+		单个获取;
+		
+	getElementsByTagName:
+		一般会限定作用域, 比如在ul下查找所有li;
+		动态方法, 用变量引用后, 使用变量时, 会再次查找, 类似swift的计算属性;
+		获取的是相同条件下的元素的集合.
+	*/
+	
+	// getElementsByTagName动态获取例子:
+	var arrBtn = document.getElementsByTagName('input');
+	alert(arrBtn.length);
+	document.body.innerHTML = '<input type="button" value="按钮" /><input type="button" value="按钮" /><input type="button" value="按钮" />'
+	arrBtn[0].onclick = function (){
+		alert(arrBtn.length);
+	};
+};
+</script>
+
+<body>
+<ul id="list">
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+<ol>
+	<li></li>
+	<li></li>
+	<li></li>
+</ol>
+</body>
+</html>

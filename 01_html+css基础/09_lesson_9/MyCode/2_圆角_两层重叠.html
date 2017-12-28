@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>2_圆角_两层重叠</title>
+</head>
+
+<style>
+	.btnLeft {
+		margin: 30px auto;
+		width: 300px;
+		background: url(img/btn2.png) no-repeat;
+	}	
+	.btnRight {
+		height: 31px;
+		background: url(img/btn_right.png) no-repeat right;
+		color: white;
+		line-height: 31px;
+		text-align: center;
+	}
+	
+	/*
+	优点: 实现起来更简单, 少了一层嵌套;
+	缺点: 比起三层嵌套, 扩展性小了很多;
+	视具体场合而定, 多数场合都会有一个最大size, 用两层嵌套更实在.
+	*/
+</style>
+
+<body>
+<div class="btnLeft">
+	<div class="btnRight">
+		两层重叠圆角元素
+	</div>
+</div>
+
+</body>
+</html>

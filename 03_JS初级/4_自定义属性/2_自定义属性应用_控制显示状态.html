@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>2_自定义属性应用_控制显示状态</title>
+</head>
+
+<style>
+	li {
+		list-style: none;
+		padding-right: 30px;
+		background: url(img/normal.png) no-repeat;
+		float: left;
+		width: 114px;
+		height: 140px;
+	}
+</style>
+
+<body>
+<ul>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+
+<script>
+	var aLi = document.getElementsByTagName('li');
+	for (var i = 0; i < aLi.length; i ++) {
+		// 用自定义属性来控制元素的事件状态;
+		aLi[i].isActive = false;
+		aLi[i].onclick = function (){
+			if(!this.isActive) {
+				// 不可用this.style.background来判断, 可以alert一下这个表达式, 发现为空, 因为这样获取到的style是
+				// 元素的行间样式, 但事实是这里的元素没有行间样式, 所以获取到的是空.
+				this.style.background = 'url(img/active.png) no-repeat';
+				this.isActive = true;
+			} else {
+				this.style.background = 'url(img/normal.png) no-repeat';
+				this.isActive = false;
+			}
+		};
+	}
+</script>
+
+</body>
+</html>

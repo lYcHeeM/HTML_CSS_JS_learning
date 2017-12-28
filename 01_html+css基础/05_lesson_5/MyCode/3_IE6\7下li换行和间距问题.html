@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>3_IE6\7下li换行和间距问题</title>
+</head>
+
+<style>
+	ul {margin: 0; padding: 0; list-style: none;}
+	a {text-decoration: none;}
+	li {width: 300px; height: 35px; border: 1px solid black; font-size: 12px; line-height: 35px;}
+	span { float: right;}
+	/* 
+		为了让"作者"显示在列表项右侧, 可以令它靠右浮动, 但在ie6\7下, 这么做会使span换行靠右, 解决办法是令li中的其他内容也浮动;
+		*> 规律: IE6\7下, 需要在同一行显示的元素, 如果往往只令其中一个浮动, 会发生一些小问题(比如之前说的浮动引起的文字左边距), 解决办法是令同行所有元素都浮动;
+	*/
+	a {float: left;}
+	
+	/* 
+		下一个问题: IE6\7中, li内的元素浮动(li本身每浮动)之后, 它与相邻li之间会出现几个像素的间隙	
+		解决: 
+			1. 给li也加浮动, 但会引起很多麻烦, 比如要手动给li设置宽度, 因为子元素浮动之后无法撑开父元素宽高, 再者浮动往往会引起父元素清浮动的需求;
+			2. 给li加上vertical-align: --样式;
+	*/
+	li {vertical-align: top;}
+</style>
+
+<body>
+<ul>
+	<li>
+		<a href="#">哈哈哈哈啊哈哈</a>
+		<span>作者</span>
+	</li>
+	<li>
+		<a href="#">哈哈哈哈啊哈哈</a>
+		<span>作者</span>
+	</li>
+	<li>
+		<a href="#">哈哈哈哈啊哈哈</a>
+		<span>作者</span>
+	</li>
+</ul>
+
+</body>
+</html>

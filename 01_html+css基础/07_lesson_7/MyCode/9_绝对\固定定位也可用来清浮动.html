@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>9_绝对\固定定位也可用来清浮动</title>
+</head>
+
+<style>
+	.box1 {
+		border: solid 10px red;
+	}	
+	.box2 {
+		width: 300px;
+		height: 300px;
+		background: blue;
+		float: left;
+	}
+	
+	/* 父级元素抱不住浮动的子元素, 绝对定位可以清除父级元素的浮动, 但一般不特意用绝对定位来清浮动, 只不过当父元素由于某种原因应用了绝对定位后, 就可以不需要清浮动了. */
+	.box1 {
+		position: absolute;
+	}
+</style>
+
+<body>
+<div class="box1">
+	<div class="box2"></div>
+</div>
+</body>
+</html>

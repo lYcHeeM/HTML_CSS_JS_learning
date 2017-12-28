@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>3_浮动综合应用_2</title>
+</head>
+
+<style>
+	body, ul, h4, p {margin: 0; padding: 0; font-family: "宋体"; font-size: 12px;}
+	li {list-style: none;}
+	img {border: none; vertical-align: top;}
+	a {text-decoration: none;}
+	
+	.wrap {width: 366px; margin: 30px auto; background: #f4fafb;}
+	.title {background: url(img/2_bg1.png) no-repeat; height: 23px;}
+	.title h4 {
+		background: url(img/2_pic2.png) 6px 5px no-repeat;
+		padding-left: 30px;
+		line-height: 22px;
+		color: #294852;
+	} 
+	
+	.list {padding: 0 7px 5px 5px;}
+	.list li {
+		padding: 13px 0 9px 0;
+        /* 清除浮动  */
+		zoom: 1;
+		overflow: hidden;
+		/*	清除IE6下列表项(li本身未浮动、内容有浮动的前提下)之间几个像素的间距	*/
+		vertical-align: top;
+	}
+	.list li div img {border: 1px solid #c8c4d3; width: 95px; height: 60px; padding: 2px; float: left;}
+	.list .text {padding: 0 0 0 13px; width: 240px; float: left;}
+	.list .text h4 {color: #333333; line-height: 24px;}
+	.list .text p {color: #666666; line-height: 20px;}
+	.list .text a {color: #666666;}
+</style>
+
+<body>
+<div class="wrap">
+	<div class="title">
+		<h4>外媒评论精选</h4>
+	</div>
+	<ul class="list">
+		<li>
+			<div>
+				<img src="img/2_pic1.png"/>
+			</div>
+			<div class="text">
+				<h4>《加勒比海盗4》-- 商业味浓郁</h4>
+				<p>本期加勒比海盗讲述杰克船长受英王所托寻找不老泉, 与他...[<a href="#">详情</a>]</p>
+			</div>
+		</li>
+		<li>
+			<div>
+				<img src="img/2_pic1.png"/>
+			</div>
+			<div class="text">
+				<h4>《加勒比海盗4》-- 商业味浓郁</h4>
+				<p>本期加勒比海盗讲述杰克船长受英王所托寻找不老泉, 与他...[<a href="#">详情</a>]</p>
+			</div>
+		</li>
+		<li>
+			<div>
+				<img src="img/2_pic1.png"/>
+			</div>
+			<div class="text">
+				<h4>《加勒比海盗4》-- 商业味浓郁</h4>
+				<p>本期加勒比海盗讲述杰克船长受英王所托寻找不老泉, 与他...[<a href="#">详情</a>]</p>
+			</div>
+		</li>
+	</ul>
+</div>
+</body>
+</html>

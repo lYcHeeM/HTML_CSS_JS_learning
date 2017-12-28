@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>4_绝对定位偏移量的相对坐标空间是文档</title>
+</head>
+<style>
+	#box1 {width: 300px; height: 300px; background: red; }
+	#box2 {width: 200px; height: 200px; background: blue;}
+	#box3 {width: 100px; height: 100px; background: green;}
+	
+	body {border: 1px solid black;}
+	#box3 {position: absolute; bottom: 0; right: 0;}
+	/*
+		发现box3跑出了body的范围, 来到了浏览器空间的右上角.
+		body < html < document, 根空间是文档, 而默然情况下, 绝对定位偏移量的相对坐标空间便是文档;
+	*/
+	/* 
+		准确说来, 绝对定位偏移量的相对坐标空间是最近的(应用了)定位(的)父级, 比如加了下面的代码后, 
+		改变box3的绝对偏移量后, 其移动相对的空间将相应改变;
+	*/
+	#box1 {position: relative;}
+	/*
+		基于此, 补充绝对定位的另外两个特性:
+		5. 绝对定位的偏移量的相对空间为最近的(应用了)定位(的)父级元素, 如果找不到任何定位父级, 则相对于整个文档偏移;
+		6. 相对定位一般是为了配合绝对定位来使用, 通常需要为某个绝对定位元素找一个定位父级(偏移量相对空间).
+	*/
+</style>
+	
+<body>
+<div id="box1">
+	<div id="box2">
+		<div id="box3">
+		</div>
+	</div>
+</div>
+</body>
+</html>

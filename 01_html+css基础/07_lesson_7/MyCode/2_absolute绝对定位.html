@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>2_absolute绝对定位</title>
+</head>
+<style>
+	div {width: 100px; height: 100px;}
+	#box1 {background: red;}
+	#box2 {background: yellow;}
+	#box3 {background: blue;}
+	
+	#box1 {position: absolute;}
+	#box2 {width: 200px; height: 200px;}
+	span {width: 300px; height: 50px; background: purple;}
+	span {position: absolute;}
+	/* 
+		position: absulute
+		特性:
+		1. 使元素完全脱离文档流;
+		2. 使内嵌元素支持宽高;
+		3. 和float一样, 脱离文档流的块属性元素依然支持内容撑开宽高;
+		4. 
+	*/
+</style>
+	
+<body>
+<div id="box1">div1</div>
+<div id="box2">div2</div>
+<div id="box3">div3</div>
+<span>span</span>
+</body>
+</html>

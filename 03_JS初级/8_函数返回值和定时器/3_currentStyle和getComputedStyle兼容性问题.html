@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>3_currentStyle和getComputedStyle兼容性问题</title>
+</head>
+
+<script src="MyTools.js"></script>
+
+<style>
+div {
+    width: 200px;
+    height: 200px;
+    background: red;
+}
+</style>
+
+<body>
+
+<input type="button" id="btn1" value="button" />
+<div id="div1"></div>
+
+<script>
+    $(function () {
+        $('btn1').onclick = function () {
+            // style只是获取行间样式
+            // 要获取在当前代码之前元素的样式
+            // 可用getComputedStyle(标准浏览器才支持)
+            // 或currentStyle(ie 8及其以下才支持)
+//            alert($('div1').style.width);
+//            alert(getComputedStyle($('div1')));
+            alert(getStyle($('div1'), 'width'));
+
+            /*
+                注意事项
+                1. 像background这样的样式属性是复合的, 不要直接获取复合属性, 不能兼容浏览器,
+                 应该获取其中的单一属性, 比如background-color;
+                2. 不同浏览器对颜色值的表示不一样, 获取的颜色值不宜用作判断依据;
+                3. 不要获取未设置的样式, 比如此处的div1没有设置margin, 获取到的margin表示在不同的浏览器可能会不一样.
+             */
+        }
+    });
+
+</script>
+
+</body>
+</html>

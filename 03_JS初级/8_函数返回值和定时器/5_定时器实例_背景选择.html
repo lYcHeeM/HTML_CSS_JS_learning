@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>5_定时器实例_背景选择</title>
+</head>
+
+<script src="MyTools.js"></script>
+<script>
+    $(function () {
+        var div1 = $('div1');
+        var div2 = $('div2');
+
+        var timer = null;
+        var hidingInterval = 150;
+
+        function show() {
+            clearTimeout(timer);
+            div2.style.display = 'block';
+        }
+        function hide() {
+            div2.style.display = 'none';
+        }
+
+        div1.onmouseover = show;
+        div1.onmouseout = function () {
+            timer = setTimeout(hide, hidingInterval);
+        }
+        div2.onmouseover = show;
+        div2.onmouseout = function () {
+            timer = setTimeout(hide, hidingInterval);
+        };
+    })
+</script>
+
+<style>
+    #div1 {
+        width: 200px;
+        height: 400px;
+        background: yellow;
+        float: left;
+    }
+    #div2 {
+        width: 100px;
+        height: 180px;
+        background: hotpink;
+        display: none;
+        float: left;
+        margin-left: 20px
+    }
+</style>
+
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>

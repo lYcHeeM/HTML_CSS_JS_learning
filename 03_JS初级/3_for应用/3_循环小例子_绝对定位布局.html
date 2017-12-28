@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>3_循环小例子_绝对定位布局</title>
+</head>
+
+<script>
+window.onload = function (){
+	var aDiv = document.getElementsByTagName('div');
+	
+	var html = '';
+	for(var i = 0; i < 100; i++) {
+		html += '<div></div>';
+	}
+	document.body.innerHTML = html;
+	
+	var len = aDiv.length;
+	var start = 10;
+	var boxWidth = 50;
+	var boxHeight = 50;
+	var lineAmount = 10;
+	for(var i = 0; i < len; i++) {
+		aDiv[i].innerHTML = i + 1;
+		aDiv[i].style.left = start + 60 * (i % lineAmount) + 'px';
+		aDiv[i].style.top = start + 60 * parseInt(i / lineAmount) + 'px';
+	}
+};
+</script>
+
+<style>
+	div {
+		width: 48px;
+		height: 48px;
+		background: red;
+		border: 1px solid #444;
+		position: absolute;
+		line-height: 48px;
+		font-size: 30px;
+		color: #fff;
+	}
+</style>
+
+<body>
+</body>
+</html>

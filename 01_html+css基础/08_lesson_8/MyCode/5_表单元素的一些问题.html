@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>5_表单元素的一些问题</title>
+</head>
+
+<style>
+	input {
+		margin: 0;
+		padding: 0;
+	}
+	
+	.text {
+		width: 300px;
+		height: 44px;
+		font-size: 18px;
+		border: 1px solid blue;
+		background: url(img/sun.jpg) 0 center no-repeat #FFFFCC;
+	}
+	/* 
+		设置完这些样式后, 标准浏览器下没有任何问题, 但低版本ie下输入内容超过一行时, 背景图会滚动.
+		解决办法:
+			用一个和input外观一致的div来显示背景, 内中填充一个透明的没有默认样式的input;
+	*/
+	.textBox {
+		width: 300px;
+		height: 44px;
+		border: 1px solid blue;
+		background: url(img/sun.jpg) 0 center no-repeat #FFFFCC;
+	}
+	.textBox input {
+		background: none;
+		width: 300px;
+		height: 44px;
+		font-size: 18px;
+		border: none;
+	}
+</style>
+
+<body>
+
+<input class="text" type="text" name="" />
+
+<br/><br/>
+<div class="textBox">
+	<input type="text" name="" />
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>6_选择符优先级</title>
+</head>
+
+
+<style>
+	li {height: 50px;}	
+	
+/*	逗号:并列关系的选择符, 空格: 包含关系的选择符 */
+	
+/*	#li1{background: red;}*/
+	#li1 {background: black;}
+/*	.ol .list1 {background: pink;}*/
+	.list {background: purple;}
+	
+	ol li {background: yellow;}
+	li {background: pink;}
+	/* 相同优先级下, 后来的代码会覆盖前者. 但加了ol之后, ol li 比 li优先级更高, 可以理解为1 + 1 > 1. */
+
+	/* 总结
+		1. 类型选择符 < class < id < style(行间样式) < script; 越具体(个体)优先级越高.
+		2. 相同级别的优先级下, 后者覆盖前者.
+	*/
+</style>
+
+<body>
+
+<ol class="ol">
+	<li class = "list list1" id="li1">111</li>
+	<li>222</li>
+	<li>333</li>
+	<li>444</li>
+	<li>555</li>
+</ol>
+
+	<script>
+		document.getElementById('li1').style.background = '#ff6602';
+	</script>
+
+</body>
+</html>

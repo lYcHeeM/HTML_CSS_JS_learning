@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>5_定位小练习</title>
+</head>
+<style>
+	a {
+		text-decoration: none;
+		color: #333;
+		/*	用绝对定位使内嵌元素支持宽高 */
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		background: green;
+	}	
+	.wrap1 {
+		width: 320px;
+		height: 320px;
+		position: relative;
+		border: 2px solid red;
+	}
+	.wrap1 .link1 {
+		top: 10px;
+		left: 10px;
+	}
+	.wrap1 .link2 {
+		top: 10px;
+		right: 10px;
+	}
+	.wrap1 .link3 {
+		top: 110px;
+		left: 110px;
+	}
+	.wrap1 .link4 {
+		bottom: 10px;
+		left: 10px;
+	}
+	.wrap1 .link5 {
+		right: 10px;
+		bottom: 10px;
+	}
+	/* 
+		发现, padding内边距会计入绝对定位偏移量的相对空间, 所以此处不能通过设置wrap1的padding来达到边角元素离定位父级10px的效果.
+	*/
+	
+	.wrap2 {
+/*		border: 1px solid black;*/
+		margin: 30px auto 0 400px;
+		width: 400px;
+		height: 500px;
+		position: relative;
+	}
+	.wrap2 a {
+		background: #20EFD9;
+		width: 50px;
+		height: 50px;
+		border: 1px solid red;
+	}
+	.wrap2 .link1 {
+		top: 0;
+		left: 0;
+	}
+	.wrap2 .link2 {
+		top: 25px;
+		left: 25px;
+	}
+	.wrap2 .link3 {
+		top: 50px;
+		left: 50px;
+	}
+	.wrap2 .link4 {
+		top: 75px;
+		left: 75px;
+	}
+	.wrap2 .link5 {
+		top: 100px;
+		left: 100px;
+	}
+</style>
+<body>
+<div class="wrap1">
+	<a href="#" class="link1">链接1</a>
+	<a href="#" class="link2">链接2</a>
+	<a href="#" class="link3">链接3</a>
+	<a href="#" class="link4">链接4</a>
+	<a href="#" class="link5">链接5</a>
+</div>
+
+<div class="wrap2">
+	<a href="#" class="link1">链接1</a>
+	<a href="#" class="link2">链接2</a>
+	<a href="#" class="link3">链接3</a>
+	<a href="#" class="link4">链接4</a>
+	<a href="#" class="link5">链接5</a>
+</div>
+
+</body>
+</html>

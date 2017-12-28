@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>4_verticalAlign的两个应用</title>
+</head>
+
+<style>
+/*	-----例子1------  */
+	.box {height: 200px; border: 10px solid black; text-align: center;}
+	.span1 {width: 100px; height: 200px; background: red; display: inline-block;}
+	.span2 {height: 100px; width: 200px; background: blue; display: inline-block;}
+	
+/*	如果要令两个span在垂直方向上对齐(top\middle\bottom)  */
+	.span1 {vertical-align: middle;}
+	.span2 {vertical-align: middle;}
+	
+/*	-----例子2------  */
+	.box2 {background: yellow; border: 2px solid black;}
+/*	发现图片撑开父级元素高度后, 图片底部会有一小段高度间隙, 此处可以利用vertical-align清除这段空隙 */
+	img {vertical-align: top;}
+</style>
+
+<body>
+<div class="box">
+	<span class="span1"></span>
+	<span class="span2"></span>
+</div>
+
+<br/>
+
+<div class="box2">
+	<img src="img/pic.jpg" alt="" />
+</div>
+
+</body>
+</html>

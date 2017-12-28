@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Margin 外边距离</title>
+</head>
+
+<style>
+	#box1 {width: 200px; height: 120px; background: yellow; margin-bottom: 30px;}
+	#box2 {width: 300px; height: 200px; background: gray; margin-top: 30px;}
+	
+	#box3 {width: 500px; height: 200px; background: orange;}
+	#box4 {width: 200px; height: 120px; background: blue; margin-top: 50px;} 
+	
+	/**
+		margin 外边距
+		1. 上下外边距会叠加;
+		2. 父子级元素中, 子级的外边局会传递给父级;
+		3. 外边距会引发很多难预料的问题, 尽量避免使用, 可用父级的内边距替代子级的内边距;
+		4. 复合属性: top right bottom left.
+	*/
+	
+	#box5 {width: 200px; height: 100px; background: black; margin: 0 auto;}
+	/**
+		可利用auto来达到固定居中效果
+	*/
+</style>
+
+<body>
+	<div id="box1"> </div>
+	<div id="box2"> </div>
+	<div id="box3">
+		<div id="box4">		</div>
+	</div>
+	<div id="box5"> </div>
+</body>
+</html>

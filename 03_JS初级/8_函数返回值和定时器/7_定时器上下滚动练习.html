@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>7_定时器上下滚动练习</title>
+</head>
+
+<script src="MyTools.js"></script>
+
+<script>
+    $(function () {
+        var oUp = $('up');
+        var oDown = $('down');
+        var oUl = $('list');
+        var oWrap1 = $('wrap1');
+
+        var wrap1Height = parseInt(getStyle(oWrap1, 'height'));
+        var ulHeihgt = parseInt(getStyle(oUl, 'height'));
+
+        var scrollUpTimer = null;
+        var scrollDownTimer = null;
+
+        function ulTop() {
+            return parseInt(getStyle(oUl, 'top'));
+        }
+
+        function fnScroll(direction) {
+            if(direction == 'up') {
+                oUl.style.top = ulTop() - 4 + 'px';
+            } else if (direction == 'down') {
+                oUl.style.top = ulTop() + 4 + 'px';
+            }
+        }
+        function fnClearTimers() {
+            clearInterval(scrollUpTimer);
+            clearInterval(scrollDownTimer);
+            scrollUpTimer = null;
+            scrollDownTimer = null;
+        }
+        
+        oUp.onmousedown = function () {
+            if(scrollUpTimer == null) {
+                scrollUpTimer = setInterval(function () {
+                    if (ulHeihgt + ulTop() <= wrap1Height) {
+                        clearInterval(scrollUpTimer);
+                    } else {
+                        fnScroll('up');
+                    }
+                }, 10);
+            }
+        }
+        oDown.onmousedown = function () {
+            if(scrollDownTimer == null) {
+                scrollDownTimer = setInterval(function () {
+                    if (ulTop() >= 0) {
+                        clearInterval(scrollUpTimer);
+                    } else {
+                        fnScroll('down');
+                    }
+                }, 10);
+            }
+        }
+
+        oUp.onmouseup = fnClearTimers;
+        oDown.onmouseup = fnClearTimers;
+    })
+</script>
+
+<style>
+    #wrap {
+        width: 400px;
+        height: 1000px;
+        margin: 30px auto;
+    }
+    #wrap1 {
+        width: 200px;
+        height: 500px;
+        overflow: hidden;
+    }
+    ul, p {
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        list-style: none;
+    }
+    p {
+        background: #333;
+        font-size: 16px;
+        text-align: center;
+        color: #fff;
+        width: 200px;
+        height: 25px;
+        line-height: 25px;
+        margin: 5px 0 5px 0;
+        cursor: pointer;
+    }
+    ul {
+        width: 200px;
+        position: relative;
+    }
+    li {
+        border-bottom: 1px solid #333;
+        margin-bottom: 5px;
+    }
+    img {
+        vertical-align: bottom;
+    }
+    span {
+        color: #333;
+        font-size: 14px;
+        line-height: 30px;
+    }
+</style>
+
+<body>
+<div id="wrap">
+    <p id="up">向上滚动</p>
+    <div id="wrap1">
+        <ul id="list">
+            <li>
+                <img src="img/1.jpg" alt="" />
+                <span>图片信息图片信息图片信息</span>
+            </li>
+            <li>
+                <img src="img/2.jpg" alt="" />
+                <span>图片信息图片信息图片信息</span>
+            </li>
+            <li>
+                <img src="img/3.jpg" alt="" />
+                <span>图片信息图片信息图片信息</span>
+            </li>
+            <li>
+                <img src="img/4.jpg" alt="" />
+                <span>图片信息图片信息图片信息</span>
+            </li>
+            <li>
+                <img src="img/1.jpg" alt="" />
+                <span>图片信息图片信息图片信息</span>
+            </li>
+            <li>
+                <img src="img/2.jpg" alt="" />
+                <span>图片信息图片信息图片信息</span>
+            </li>
+            <li>
+                <img src="img/3.jpg" alt="" />
+                <span>图片信息图片信息图片信息</span>
+            </li>
+            <li>
+                <img src="img/4.jpg" alt="" />
+                <span>图片信息图片信息图片信息</span>
+            </li>
+            <li>
+                <img src="img/1.jpg" alt="" />
+                <span>图片信息图片信息图片信息</span>
+            </li>
+            <li>
+                <img src="img/2.jpg" alt="" />
+                <span>图片信息图片信息图片信息</span>
+            </li>
+            <li>
+                <img src="img/3.jpg" alt="" />
+                <span>图片信息图片信息图片信息</span>
+            </li>
+            <li>
+                <img src="img/4.jpg" alt="" />
+                <span>图片信息图片信息图片信息</span>
+            </li>
+        </ul>
+    </div>
+    <p id="down">向下滚动</p>
+</div>
+
+
+</body>
+</html>

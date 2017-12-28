@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>4_JS属性操作有关的兼容性问题</title>
+</head>
+
+<script>
+	window.onload = function (){
+		var oBtn1 = document.getElementById('btn1');
+		var oImg = document.getElementById('img1');
+		var oBtn2 = document.getElementById('btn2');
+		
+		oBtn1.onclick = function (){	//file:///Users/luozhijun/Desktop/Web%E5%89%8D%E7%AB%AF/MyCode/03_JS%E5%88%9D%E7%BA%A7/2_JS%E5%B1%9E%E6%80%A7%E6%93%8D%E4%BD%9C/img/3.jpg
+			alert(oImg.src);
+		};
+		oBtn2.onclick = function () {
+			oBtn2.type = 'checkbox';		
+		};
+	};
+	/*
+	JS中不宜用作判断依据的东西:
+		1. 所有的相对路径: 比如img src, a href;
+		2. innterHTML, 因为要兼容其他浏览器;
+		3. color值, 不同的浏览器对颜色的n表示值不一样.
+		
+	元素.type 在低版本ie下不兼容, 如果要实现这个效果, 需要避开直接修改type的方式, 比如先把按钮因惨, 再用一个事先隐藏的checkbox盖住它.
+	
+	再如修改floats属性, ie下需要 oDiv.styleFloat = 'left'; 标准浏览器下为oDiv.cssFloat = 'left';
+	此时虽然可以通过写两句代码来实现兼容, 但更好的做法是用间接的方式, 比如用一个定义好的css class加给元素.
+	*/
+	
+</script>
+
+<body>
+<input id="btn1" type="button" value="显示图片路径" />
+<img id="img1" src="img/3.jpg" alt="" />
+<input id="btn2" type="button" value="更换成复选框" />
+</body>
+</html>

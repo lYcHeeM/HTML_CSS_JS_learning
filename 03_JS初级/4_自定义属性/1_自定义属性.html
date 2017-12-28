@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>1_自定义属性</title>
+</head>
+
+<body>
+<input type="button" value="按钮1" />
+
+<script>
+	// JS可以给任意html元素添加任意个自定义属性, 方式依然是动态修改元素的行间代码:
+	// 比如添加一个abc的属性:
+	// <input abc='哈哈哈' .../>
+	// 自定义属性的应用与MVC中模型的应用类似, 控制显示样式.
+	
+	var aBtn = document.getElementsByTagName('input');
+	for(var i = 0; i < aBtn.length; i ++) {
+		aBtn[i].abc = 123;
+		aBtn[i].hasChanged = true;
+		alert(aBtn[i].abc);
+		alert(aBtn[i].hasChanged);
+	} 
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>8_自动切换选项卡练习</title>
+</head>
+
+<script src="MyTools.js"></script>
+
+<script>
+    $(function () {
+        var oWrap = $('wrap');
+        var aMenu = document.getElementsByTagName('strong');
+        var aLi = document.getElementsByTagName('li');
+        var oImg = $('img');
+
+        var aImgUrl = [['img/1.jpg', 'img/2.jpg', 'img/3.jpg'], ['img/1.png', 'img/2.png', 'img/3.png']];
+        var aImgTitle = [['图片1', '图片2', '图片3'], ['图片4', '图片5', '图片6']];
+
+        var index_1d = 0;
+        var index_2d = 0;
+        var lastActivedMenu = null;
+        var lastActivedLi   = null;
+
+        function fnRefreshUI() {
+            if (lastActivedMenu !== null) {
+                lastActivedMenu.className = '';
+            }
+            if (lastActivedLi !== null) {
+                lastActivedLi.className = '';
+            }
+            aMenu[index_1d].className = 'menu_active';
+            for (var i = 0; i < aLi.length; i ++) {
+                var order = index_1d * aImgUrl[0].length + i + 1;
+                aLi[i].innerHTML = '图片' + order;
+            }
+            aLi[index_2d].className = 'li_active';
+            oImg.src = aImgUrl[index_1d][index_2d];
+            lastActivedMenu = aMenu[index_1d];
+            lastActivedLi = aLi[index_2d];
+        }
+
+        fnRefreshUI();
+
+        for (var i = 0; i < aMenu.length; i ++) {
+            aMenu[i].index = i;
+            aMenu[i].onclick = function () {
+                index_1d = this.index;
+                fnRefreshUI();
+            }
+        }
+
+        for (var i = 0; i < aLi.length; i ++) {
+            aLi[i].index = i;
+            aLi[i].onclick = function () {
+                index_2d = this.index;
+                fnRefreshUI();
+            }
+        }
+
+        function fnAutoSwitchImg() {
+            index_2d ++;
+            if(index_2d >= 3) {
+                index_1d ++;
+                index_1d %= aImgUrl.length;
+            }
+            index_2d %= aImgUrl[0].length;
+            fnRefreshUI();
+        }
+        var timer = setInterval(fnAutoSwitchImg, 1000);
+        oWrap.onmouseover = function () {
+            clearInterval(timer);
+        }
+        oWrap.onmouseout = function () {
+            timer = setInterval(fnAutoSwitchImg, 1000);
+        }
+    })
+</script>
+
+<style>
+    #wrap {
+        margin: 30px auto;
+        position: relative;
+        width: 485px;
+    }
+    strong {
+        display: inline-block;
+        width: 80px;
+        height: 35px;
+        line-height: 35px;
+        background-color: #e9e5df;
+        text-align: center;
+        color: #333;
+    }
+    .menu_active {
+        background-color: #1386e9;
+        color: #f1f1f1;
+    }
+    img {
+        display: block;
+        vertical-align: bottom;
+        width: 400px;
+        /*height: 400px;*/
+        margin-top: 5px;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        left: 405px;
+        top: 40px;
+        width: 80px;
+    }
+    li {
+        font-size: 14px;
+        list-style: none;
+        background-color: #e9e5df;
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+        border-bottom: 2px solid #fff;
+    }
+    .li_active {
+        background-color: #7d26e9;
+        color: #f1f1f1;
+    }
+</style>
+
+<body>
+<div id="wrap">
+    <strong>菜单1</strong>
+    <strong>菜单2</strong>
+    <img id="img" alt="" />
+    <ul>
+        <li>图片1</li>
+        <li>图片2</li>
+        <li>图片3</li>
+    </ul>
+</div>
+
+</body>
+</html>
