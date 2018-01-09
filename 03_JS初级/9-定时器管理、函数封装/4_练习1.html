@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>4_练习1</title>
+</head>
+
+<style>
+    #div1 {
+        width: 400px;
+        height: 50px;
+        border: 1px solid black;
+        margin: 150px 0 0 50px;
+        position: relative;
+    }
+    .color_bar {
+        position: absolute;
+        color: coral;
+    }
+    span {
+        line-height: 50px;
+        width: 40px;
+        display: inline-block;
+        text-align: center;
+        position: relative;
+    }
+</style>
+
+<script src="MyTools.js"></script>
+<script>
+    $(function () {
+        var oDiv = $('div1');
+
+        var htmlStr = '';
+        for (var i = 0; i < 10; i ++) {
+            htmlStr += '<span>+1</span>';
+        }
+        htmlStr += '<div class="color_bar"></div>';
+        oDiv.innerHTML += htmlStr;
+
+        var aSpan = oDiv.getElementsByTagName('span');
+        for (var i = 0; i < aSpan.length; i ++) {
+            aSpan[i].style.zIndex = i + 2;
+        }
+
+        var color_bar = oDiv.getElementsByClassName('color_bar')[0];
+        color_bar.style.position = 'absolute';
+        color_bar.style.opacity = 1;
+        color_bar.style.left = 0;
+        color_bar.style.top = 0;
+        color_bar.style.backgroundColor = 'coral';
+        color_bar.style.width = 0;
+        color_bar.style.height = parseFloat(getStyle(oDiv, 'height')) + 'px';
+
+        var targetWidth = parseFloat(getStyle(oDiv, 'width'));
+        var isCompleted = true;
+        oDiv.onclick = function () {
+            if(!isCompleted) return;
+            isCompleted = false;
+            doTransform(color_bar, 'width', targetWidth, 1, function () {
+                doTransform(color_bar, 'opacity', 0, 0.35, function () {
+                    color_bar.style.width = 0;
+                    color_bar.style.opacity = 1;
+                });
+                var index = 0;
+                var index_2 = 0;
+                var timer = setInterval(function () {
+                    doTransform(aSpan[index], 'top', -120, 0.5);
+                    doTransform(aSpan[index], 'opacity', 0, 0.5, function () {
+                        if(index_2 == aSpan.length - 1) {
+                            setTimeout(function () {
+                                for (var i = 0; i < aSpan.length; i ++) {
+                                    aSpan[i].style.top = 0;
+                                    aSpan[i].style.opacity = 1;
+                                }
+                                isCompleted = true;
+                            }, 50);
+                        }
+                        index_2 += 1;
+                    });
+                    index ++;
+                    if(index >= aSpan.length) {
+                        clearInterval(timer);
+                    }
+                }, 100)
+            });
+        };
+    })
+</script>
+
+<body>
+<div id="div1">
+
+</div>
+</body>
+</html>

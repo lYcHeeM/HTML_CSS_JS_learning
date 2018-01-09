@@ -6,24 +6,68 @@
 </head>
 
 <script src="MyTools.js">
+</script>
+
+<script>
     $(function () {
         var oImg = $('img');
+        var oBtn1 = $('btn1');
+        var oBtn2 = $('btn2');
 
-        var horizontalMovingValues = [];
-        for(var i = 24; i -= )
-        oImg.onclick = function () {
+        var iTop = parseFloat(getStyle(oImg, 'top'));
+        var iLeft = parseFloat(getStyle(oImg, 'left'));
 
+        oBtn1.onclick = function () {
+            doShake(oImg, 'horizontal', iLeft, iTop);
         };
+        oBtn2.onclick = function () {
+            doShake(oImg, 'vertical', iLeft, iTop);
+        };
+
+        function doShake(obj, direction, initialLeft, initialRight) {
+            obj.style.left = initialLeft + 'px';
+            obj.style.top = initialRight + 'px';
+
+            clearInterval(obj.shake_timer);
+
+            var movingValues = [];
+            for(var i = 30; i -= 5; i > 0) {
+                movingValues.push(i);
+                movingValues.push(-i);
+            }
+            movingValues.push(0);
+
+            var index = 0;
+            obj.shake_timer = setInterval(function () {
+                if(direction === 'vertical') {
+                    var currentTop = parseFloat(getStyle(obj, 'top'));
+                    obj.style.top = currentTop + movingValues[index] + 'px';
+                } else {
+                    var currentLeft = parseFloat(getStyle(obj, 'left'));
+                    obj.style.left = currentLeft + movingValues[index] + 'px';
+                }
+                index += 1;
+                if (index >= movingValues.length) {
+                    clearInterval(obj.shake_timer);
+                    obj.shake_timer = null;
+                }
+            }, 50);
+        }
     })
 </script>
 
 <style>
     img {
         width: 180px;
+        position: relative;
+        left: 300px;
+        top: 200px;
     }
 </style>
 
 <body>
+<input type="button" id="btn1" value="水平摇动">
+<input type="button" id="btn2" value="垂直摇动">
 <img id="img" src="img/4.jpg" alt="">
 </body>
 </html>
