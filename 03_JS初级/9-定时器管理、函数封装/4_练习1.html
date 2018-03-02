@@ -44,6 +44,7 @@
         }
 
         var color_bar = oDiv.getElementsByClassName('color_bar')[0];
+        // 发现runtime生成的元素不能用style中的类来加样式
         color_bar.style.position = 'absolute';
         color_bar.style.opacity = 1;
         color_bar.style.left = 0;

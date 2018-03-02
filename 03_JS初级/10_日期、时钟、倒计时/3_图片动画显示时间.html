@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>3_图片动画显示时间</title>
+</head>
+
+<script src="MyTools.js"></script>
+<script>
+    $(function () {
+        function fnFormartTimeNumber(n) {
+            return n >= 10 ? '' + n : '0' + n;
+        }
+        
+        function fnNumberAddition(n) {
+            return n === 9 ? 0 : n + 1;
+        }
+
+        function fnDateString() {
+            var date = new Date();
+            var iMiniute = date.getMinutes();
+            var iHour = date.getHours();
+            var iSeconds = date.getSeconds();
+
+            var dateStr = fnFormartTimeNumber(iHour) + ':' + fnFormartTimeNumber(iMiniute) + ':' + fnFormartTimeNumber(iSeconds);
+            return dateStr;
+        }
+
+        var initialDateString = fnDateString();
+        var aNumberImgUrl = ['img/0.jpg', 'img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg', 'img/5.jpg', 'img/6.jpg', 'img/7.jpg', 'img/8.jpg', 'img/9.jpg'];
+        var colonImgUrl = 'img/colon.jpg';
+
+        var htmlStr = document.body.innerHTML;
+        for (var i = 0; i < initialDateString.length; i ++) {
+            var char = initialDateString.charAt(i);
+            var currentNumber = parseInt(char);
+            if(char === ':') {
+                htmlStr += '<ul><li><img class="colon" src="img/colon.JPG" alt="" /></li></ul>';
+            } else {
+                htmlStr += '<ul class="number">\n' +
+                    '    <li><img src="' + aNumberImgUrl[fnNumberAddition(currentNumber)] + '" alt="" /></li>\n' +
+                    '    <li><img src="' + aNumberImgUrl[currentNumber] + '" alt="" /></li>\n' +
+                    '</ul>';
+            }
+        }
+        document.body.innerHTML = htmlStr;
+
+        var oDiv = $('div1');
+        oDiv.innerHTML = initialDateString;
+
+        var aUl = document.body.getElementsByTagName('ul');
+        for(var i = 0; i < aUl.length; i ++) {
+            if(aUl[i].className === 'number') {
+                var aLi = aUl[i].getElementsByTagName('li');
+                /// 把第一个li上移, 第二li自动就会跑到第一个li原来的位置,
+                /// 不需要再改第二个li的position
+                aLi[0].style.top = -parseInt(getStyle(aLi[0], 'height')) + 'px';
+            }
+        }
+
+        for (var i = 0; i < initialDateString.length; i ++) {
+            var char = initialDateString.charAt(i);
+            var currentNumber = parseInt(char);
+            var targetImgUrl = aNumberImgUrl[currentNumber];
+            if (char !== ':') {
+                var aImg = aUl[i].getElementsByTagName('img');
+                /// 用来判断是否需要动画改变时间
+                /// 注意到src属性是绝对地址, 不宜作为判断依据
+                aImg[1].zj_src = targetImgUrl;
+            }
+        }
+
+        setInterval(function () {
+            var currentDateStr = fnDateString();
+            oDiv.innerHTML = currentDateStr;
+            for(var i = 0; i < currentDateStr.length; i ++) {
+                var char = currentDateStr.charAt(i);
+                var currentNumber = parseInt(char);
+                var targetImgUrl = aNumberImgUrl[currentNumber];
+                if (char !== ':') {
+                    var aImg = aUl[i].getElementsByTagName('img');
+                    if(aImg[1].zj_src === targetImgUrl) continue;
+                    aImg[0].src = targetImgUrl;
+
+                    var aLi = aUl[i].getElementsByTagName('li');
+                    var liHeight = parseInt(getStyle(aLi[0], 'height'));
+
+                    doTransform(aLi[0], 'top', 0, 0.5);
+                    zjDoTransform(i, currentNumber, aLi[1], 'top', liHeight, 0.5);
+                }
+            }
+        }, 1000);
+
+        function zjDoTransform(index, index2, obj, attrName, targetValue, interval) {
+            doTransform(obj, attrName, targetValue, interval, function () {
+                var aLi = aUl[index].getElementsByTagName('li');
+                var aImg = aUl[index].getElementsByTagName('img');
+                aImg[1].src = aNumberImgUrl[index2];
+                aImg[1].zj_src = aNumberImgUrl[index2];
+                /// 动画结束后重置position
+                aLi[0].style.top = -parseInt(getStyle(aLi[0], 'height')) + 'px';
+                aLi[1].style.top = '0px';
+            });
+        }
+        // 测试瞬间改变坐标再改回是否产生显著的视觉印象
+//        setTimeout(function () {
+//            aImg[aImg.length - 1].style.top = '-50px';
+//            aImg[aImg.length - 1].style.top = 0;
+//        }, 1000)
+    })
+</script>
+
+<style>
+    #div1 {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        width: 124px;
+        height: 172px;
+        overflow: hidden;
+        float: left;
+    }
+    li {
+        height: 172px;
+        list-style: none;
+        position: absolute;
+    }
+    img {
+        display: block;
+        vertical-align: bottom;
+        position: relative;
+    }
+</style>
+
+<body>
+<p id="div1"></p>
+<!--<ul>-->
+    <!--<li><img src="" alt="" /></li>-->
+    <!--<li><img src="" alt="" /></li>-->
+<!--</ul>-->
+<!--<ul>-->
+    <!--<li><img src="" alt="" /></li>-->
+    <!--<li><img src="" alt="" /></li>-->
+<!--</ul>-->
+<!--<img class="colon" src="img/colon.JPG" alt="" />-->
+<!--<ul>-->
+    <!--<li><img src="" alt="" /></li>-->
+    <!--<li><img src="" alt="" /></li>-->
+<!--</ul>-->
+<!--<ul>-->
+    <!--<li><img src="" alt="" /></li>-->
+    <!--<li><img src="" alt="" /></li>-->
+<!--</ul>-->
+<!--<img class="colon" src="img/colon.JPG" alt="" />-->
+<!--<ul>-->
+    <!--<li><img src="" alt="" /></li>-->
+    <!--<li><img src="" alt="" /></li>-->
+<!--</ul>-->
+<!--<ul>-->
+    <!--<li><img src="" alt="" /></li>-->
+    <!--<li><img src="" alt="" /></li>-->
+<!--</ul>-->
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>1_日期对象</title>
+</head>
+
+<script src="MyTools.js"></script>
+<script>
+    $(function () {
+        function fnFormartTimeNumber(n) {
+            return n >= 10 ? '' + n : '0' + n;
+        }
+
+        function fnDateString() {
+            var date = new Date();
+            var iYear = date.getFullYear();
+            /// 月份是从零开始
+            var iMonth = date.getMonth() + 1;
+            var iWeekDay = date.getDay();
+            var iDay = date.getDate();
+            var iHour = date.getHours();
+            var iMiniute = date.getMinutes();
+            var iSeconds = date.getSeconds();
+            var iMSec = date.getMilliseconds();
+
+            var weekStr = '';
+            switch(iWeekDay) {
+                case 1:
+                    weekStr = '星期一';
+                    break;
+                case 2:
+                    weekStr =  '星期二';
+                    break;
+                case 3:
+                    weekStr =  '星期三';
+                    break;
+                case 4:
+                    weekStr =  '星期四';
+                    break;
+                case 5:
+                    weekStr =  '星期五';
+                    break;
+                case 6:
+                    weekStr =  '星期六';
+                    break;
+                case 7:
+                    weekStr =  '星期日';
+            }
+
+            var dateStr = iYear + '年' + iMonth + '月' + iDay + '日 ' + weekStr + ' ' + fnFormartTimeNumber(iHour) + ':' + fnFormartTimeNumber(iMiniute) + ':' + fnFormartTimeNumber(iSeconds) + '.' + iMSec;
+
+            return dateStr;
+        }
+
+        document.body.innerHTML = fnDateString();
+        setInterval(function () {
+            document.body.innerHTML = fnDateString();
+        }, 1000);
+    })
+</script>
+
+<style>
+</style>
+
+<body>
+</body>
+</html>

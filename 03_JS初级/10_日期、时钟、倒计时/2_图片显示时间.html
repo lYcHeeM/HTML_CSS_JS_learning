@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>2_图片显示时间</title>
+</head>
+
+<script src="MyTools.js"></script>
+<script>
+    $(function () {
+        function fnFormartTimeNumber(n) {
+            return n >= 10 ? '' + n : '0' + n;
+        }
+
+        function fnDateString() {
+            var date = new Date();
+            var iMiniute = date.getMinutes();
+            var iHour = date.getHours();
+            var iSeconds = date.getSeconds();
+
+            var dateStr = fnFormartTimeNumber(iHour) + ':' + fnFormartTimeNumber(iMiniute) + ':' + fnFormartTimeNumber(iSeconds);
+            return dateStr;
+        }
+
+        var initialDateString = fnDateString();
+
+        var aNumberImgUrl = ['img/0.jpg', 'img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg', 'img/5.jpg', 'img/6.jpg', 'img/7.jpg', 'img/8.jpg', 'img/9.jpg'];
+        var colonImgUrl = 'img/colon.jpg';
+
+        var htmlStr = document.body.innerHTML;
+        for (var i = 0; i < initialDateString.length; i ++) {
+            var char = initialDateString.charAt(i);
+            var currentNumber = parseInt(char);
+            var usingImgUrl = '';
+            var usingClass = '';
+            if(char === ':') {
+                usingImgUrl = colonImgUrl;
+                usingClass = 'colon';
+            } else {
+                usingImgUrl = aNumberImgUrl[currentNumber];
+                usingClass = 'number';
+            }
+            htmlStr += '<img class="' + usingClass + '" src="' + usingImgUrl + '" alt="" />';
+        }
+        document.body.innerHTML = htmlStr;
+
+        var oDiv = $('div1');
+        oDiv.innerHTML = initialDateString;
+        var aImg = document.body.getElementsByTagName('img');
+        setInterval(function () {
+            var currentDateStr = fnDateString();
+            oDiv.innerHTML = currentDateStr;
+            for(var i = 0; i < currentDateStr.length; i ++) {
+                var char = currentDateStr.charAt(i);
+                var currentNumber = parseInt(char);
+                if (char !== ':') {
+                    aImg[i].src = aNumberImgUrl[currentNumber];
+                }
+            }
+        }, 1000);
+    })
+</script>
+
+<style>
+</style>
+
+<body>
+<p id="div1"></p>
+<!--<img src="img/0.JPG" alt="" />-->
+<!--<img src="img/0.JPG" alt="" />-->
+<!--<img class="colon" src="img/0.JPG" alt="" />-->
+<!--<img src="img/0.JPG" alt="" />-->
+<!--<img src="img/0.JPG" alt="" />-->
+<!--<img class="colon" src="img/0.JPG" alt="" />-->
+<!--<img src="img/0.JPG" alt="" />-->
+<!--<img src="img/0.JPG" alt="" />-->
+</body>
+</html>

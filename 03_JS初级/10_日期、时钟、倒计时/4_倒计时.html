@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>4_倒计时</title>
+</head>
+
+<style>
+</style>
+
+<script>
+    var iNow = new Date();
+    var iFuture = new Date('January 22,2018 12:12:12');
+    var seconds = Math.floor((iFuture - iNow)/1000);
+    var hours = Math.floor(seconds/3600);
+    var minutes = seconds % 60;
+    alert(minutes);
+    // 数字形式：new Date( 2013,4,1,9,48,12 );
+    // 字符串形式：new Date('June 10,2013 12:12:12');
+
+    // January、February、March、April、May、June、
+    // July、August、September、October、November、December
+
+    // 天：Math.floor(t/86400)
+    // 时：Math.floor(t%86400/3600)
+    // 分：Math.floor(t%86400%3600/60)
+    // 秒：t%60
+
+</script>
+
+<body>
+</body>
+</html>
